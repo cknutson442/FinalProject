@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ShotTimerViewController.h
 //  FinalProject
 //
 //  Created by CONNER KNUTSON on 3/26/14.
@@ -9,6 +9,9 @@
 #import <GLKit/GLKit.h>
 #import <UIKit/UIKit.h>
 
-@interface ViewController : GLKViewController
+@interface ShotTimerViewController : GLKViewController
+{
+    NSTimer *timer;
+}
 
 @end

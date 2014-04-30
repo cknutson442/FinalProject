@@ -13,7 +13,6 @@
 		0C50872218E37CE300FFA32A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C50872018E37CE300FFA32A /* InfoPlist.strings */; };
 		0C50872418E37CE300FFA32A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872318E37CE300FFA32A /* main.m */; };
 		0C50872818E37CE300FFA32A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872718E37CE300FFA32A /* AppDelegate.m */; };
-		0C50872B18E37CE300FFA32A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C50872918E37CE300FFA32A /* Main.storyboard */; };
 		0C50872E18E37CE300FFA32A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872D18E37CE300FFA32A /* ViewController.m */; };
 		0C50873018E37CE300FFA32A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C50872F18E37CE300FFA32A /* Images.xcassets */; };
 		0C50873718E37CE300FFA32A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50873618E37CE300FFA32A /* XCTest.framework */; };
@@ -21,6 +20,15 @@
 		0C50873918E37CE300FFA32A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50871B18E37CE300FFA32A /* UIKit.framework */; };
 		0C50874118E37CE300FFA32A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C50873F18E37CE300FFA32A /* InfoPlist.strings */; };
 		0C50874318E37CE300FFA32A /* FinalProjectTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50874218E37CE300FFA32A /* FinalProjectTests.m */; };
+		0C50875118E3ABBF00FFA32A /* ShotTimerViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */; };
+		0C50875D18E3ACE500FFA32A /* AudioFileReader.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50875418E3ACE500FFA32A /* AudioFileReader.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C50875E18E3ACE500FFA32A /* AudioFileWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50875618E3ACE500FFA32A /* AudioFileWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C50875F18E3ACE500FFA32A /* Novocaine.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50875818E3ACE500FFA32A /* Novocaine.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C50876018E3ACE500FFA32A /* RingBuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50875A18E3ACE500FFA32A /* RingBuffer.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		0C50876218E3B48100FFA32A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50876118E3B48100FFA32A /* AVFoundation.framework */; };
+		0C50876418E3B48D00FFA32A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50876318E3B48D00FFA32A /* GLKit.framework */; };
+		0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */; };
+		0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C50876C18E3E78600FFA32A /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,7 +52,6 @@
 		0C50872518E37CE300FFA32A /* FinalProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinalProject-Prefix.pch"; sourceTree = "<group>"; };
 		0C50872618E37CE300FFA32A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C50872718E37CE300FFA32A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0C50872A18E37CE300FFA32A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0C50872C18E37CE300FFA32A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		0C50872D18E37CE300FFA32A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		0C50872F18E37CE300FFA32A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
@@ -53,6 +60,23 @@
 		0C50873E18E37CE300FFA32A /* FinalProjectTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "FinalProjectTests-Info.plist"; sourceTree = "<group>"; };
 		0C50874018E37CE300FFA32A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0C50874218E37CE300FFA32A /* FinalProjectTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FinalProjectTests.m; sourceTree = "<group>"; };
+		0C50874F18E3ABBF00FFA32A /* ShotTimerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotTimerViewController.h; sourceTree = "<group>"; };
+		0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShotTimerViewController.mm; sourceTree = "<group>"; };
+		0C50875318E3ACE500FFA32A /* AudioFileReader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileReader.h; sourceTree = "<group>"; };
+		0C50875418E3ACE500FFA32A /* AudioFileReader.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AudioFileReader.mm; sourceTree = "<group>"; };
+		0C50875518E3ACE500FFA32A /* AudioFileWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioFileWriter.h; sourceTree = "<group>"; };
+		0C50875618E3ACE500FFA32A /* AudioFileWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioFileWriter.m; sourceTree = "<group>"; };
+		0C50875718E3ACE500FFA32A /* Novocaine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Novocaine.h; sourceTree = "<group>"; };
+		0C50875818E3ACE500FFA32A /* Novocaine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Novocaine.m; sourceTree = "<group>"; };
+		0C50875918E3ACE500FFA32A /* RingBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RingBuffer.h; sourceTree = "<group>"; };
+		0C50875A18E3ACE500FFA32A /* RingBuffer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RingBuffer.mm; sourceTree = "<group>"; };
+		0C50875B18E3ACE500FFA32A /* SMUFFTHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUFFTHelper.h; sourceTree = "<group>"; };
+		0C50875C18E3ACE500FFA32A /* SMUGraphHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SMUGraphHelper.h; sourceTree = "<group>"; };
+		0C50876118E3B48100FFA32A /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		0C50876318E3B48D00FFA32A /* GLKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLKit.framework; path = System/Library/Frameworks/GLKit.framework; sourceTree = SDKROOT; };
+		0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotTimerViewController2.h; sourceTree = "<group>"; };
+		0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShotTimerViewController2.mm; sourceTree = "<group>"; };
+		0C50876C18E3E78600FFA32A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,8 +84,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C50876218E3B48100FFA32A /* AVFoundation.framework in Frameworks */,
 				0C50871A18E37CE300FFA32A /* CoreGraphics.framework in Frameworks */,
 				0C50871C18E37CE300FFA32A /* UIKit.framework in Frameworks */,
+				0C50876418E3B48D00FFA32A /* GLKit.framework in Frameworks */,
 				0C50871818E37CE300FFA32A /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +127,8 @@
 		0C50871618E37CE300FFA32A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0C50876318E3B48D00FFA32A /* GLKit.framework */,
+				0C50876118E3B48100FFA32A /* AVFoundation.framework */,
 				0C50871718E37CE300FFA32A /* Foundation.framework */,
 				0C50871918E37CE300FFA32A /* CoreGraphics.framework */,
 				0C50871B18E37CE300FFA32A /* UIKit.framework */,
@@ -112,11 +140,16 @@
 		0C50871D18E37CE300FFA32A /* FinalProject */ = {
 			isa = PBXGroup;
 			children = (
+				0C50876C18E3E78600FFA32A /* Main.storyboard */,
 				0C50872618E37CE300FFA32A /* AppDelegate.h */,
 				0C50872718E37CE300FFA32A /* AppDelegate.m */,
-				0C50872918E37CE300FFA32A /* Main.storyboard */,
+				0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */,
+				0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */,
 				0C50872C18E37CE300FFA32A /* ViewController.h */,
+				0C50874F18E3ABBF00FFA32A /* ShotTimerViewController.h */,
+				0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */,
 				0C50872D18E37CE300FFA32A /* ViewController.m */,
+				0C50875218E3ACBB00FFA32A /* HelperFiles */,
 				0C50872F18E37CE300FFA32A /* Images.xcassets */,
 				0C50871E18E37CE300FFA32A /* Supporting Files */,
 			);
@@ -150,6 +183,23 @@
 				0C50873F18E37CE300FFA32A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		0C50875218E3ACBB00FFA32A /* HelperFiles */ = {
+			isa = PBXGroup;
+			children = (
+				0C50875318E3ACE500FFA32A /* AudioFileReader.h */,
+				0C50875418E3ACE500FFA32A /* AudioFileReader.mm */,
+				0C50875518E3ACE500FFA32A /* AudioFileWriter.h */,
+				0C50875618E3ACE500FFA32A /* AudioFileWriter.m */,
+				0C50875718E3ACE500FFA32A /* Novocaine.h */,
+				0C50875818E3ACE500FFA32A /* Novocaine.m */,
+				0C50875918E3ACE500FFA32A /* RingBuffer.h */,
+				0C50875A18E3ACE500FFA32A /* RingBuffer.mm */,
+				0C50875B18E3ACE500FFA32A /* SMUFFTHelper.h */,
+				0C50875C18E3ACE500FFA32A /* SMUGraphHelper.h */,
+			);
+			name = HelperFiles;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -228,9 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */,
 				0C50873018E37CE300FFA32A /* Images.xcassets in Resources */,
 				0C50872218E37CE300FFA32A /* InfoPlist.strings in Resources */,
-				0C50872B18E37CE300FFA32A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,9 +299,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */,
 				0C50872E18E37CE300FFA32A /* ViewController.m in Sources */,
 				0C50872818E37CE300FFA32A /* AppDelegate.m in Sources */,
+				0C50875118E3ABBF00FFA32A /* ShotTimerViewController.mm in Sources */,
+				0C50875F18E3ACE500FFA32A /* Novocaine.m in Sources */,
+				0C50875D18E3ACE500FFA32A /* AudioFileReader.mm in Sources */,
 				0C50872418E37CE300FFA32A /* main.m in Sources */,
+				0C50875E18E3ACE500FFA32A /* AudioFileWriter.m in Sources */,
+				0C50876018E3ACE500FFA32A /* RingBuffer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,14 +336,6 @@
 				0C50872118E37CE300FFA32A /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		0C50872918E37CE300FFA32A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				0C50872A18E37CE300FFA32A /* Base */,
-			);
-			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		0C50873F18E37CE300FFA32A /* InfoPlist.strings */ = {
@@ -460,6 +508,7 @@
 				0C50874818E37CE300FFA32A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0C50874918E37CE300FFA32A /* Build configuration list for PBXNativeTarget "FinalProjectTests" */ = {
 			isa = XCConfigurationList;
@@ -468,6 +517,7 @@
 				0C50874B18E37CE300FFA32A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
