@@ -85,10 +85,10 @@
             </objects>
             <point key="canvasLocation" x="1578" y="-662"/>
         </scene>
-        <!--View Controller-->
+        <!--Group View Controller-->
         <scene sceneID="AZp-XJ-L0D">
             <objects>
-                <viewController id="wCt-LH-RfI" sceneMemberID="viewController">
+                <viewController id="wCt-LH-RfI" customClass="GroupViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="4Mm-Tk-Q74"/>
                         <viewControllerLayoutGuide type="bottom" id="UOC-Um-L03"/>
@@ -97,20 +97,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Group Sizer" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CbW-1r-yWZ">
-                                <rect key="frame" x="111" y="273" width="99" height="21"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-I6-7Pq">
+                                <rect key="frame" x="0.0" y="65" width="320" height="432"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nj-Im-Q0T">
+                                <rect key="frame" x="20" y="498" width="280" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-oI-cNR">
+                                <rect key="frame" x="-10" y="531" width="330" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Load Image" id="Wmd-ZC-ccK">
+                                        <connections>
+                                            <action selector="pickImageFromGallery:" destination="wCt-LH-RfI" id="i1m-vS-U0K"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="Xx2-qD-mhi"/>
+                                    <barButtonItem title="Take Picture" id="KTb-cc-Uaf">
+                                        <connections>
+                                            <action selector="takePictureFromCamera:" destination="wCt-LH-RfI" id="Idi-Xp-XX5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="22L-tB-F8D"/>
+                                    <barButtonItem title="Settings" id="Aqw-e2-6bj"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="l5b-xc-Bzf"/>
+                    <connections>
+                        <outlet property="imageView" destination="XKp-I6-7Pq" id="xBT-8a-cZk"/>
+                        <outlet property="objectSizeLabel" destination="7nj-Im-Q0T" id="q6s-e0-MK6"/>
+                        <outlet property="tempImageView" destination="XKp-I6-7Pq" id="Oa6-X2-s4g"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNu-Lm-Pq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2164" y="-662"/>
+            <point key="canvasLocation" x="2304" y="-662"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="pI4-nc-caQ">
@@ -137,7 +165,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCQ-PE-hsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1638" y="244"/>
+            <point key="canvasLocation" x="2304" y="116"/>
         </scene>
         <!--Shot Timer View Controller-->
         <scene sceneID="SHk-9T-DFs">
@@ -199,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="unU-Kt-gLl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2690" y="-1565"/>
+            <point key="canvasLocation" x="2304" y="-1495"/>
         </scene>
         <!--Shot Timer View Controller2-->
         <scene sceneID="45f-03-dcX">
@@ -230,7 +258,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vff-q3-svE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3245" y="-1563"/>
+            <point key="canvasLocation" x="2969" y="-1519"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3vv-B0-CGz">

@@ -13,7 +13,7 @@
 		0C50872218E37CE300FFA32A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 0C50872018E37CE300FFA32A /* InfoPlist.strings */; };
 		0C50872418E37CE300FFA32A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872318E37CE300FFA32A /* main.m */; };
 		0C50872818E37CE300FFA32A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872718E37CE300FFA32A /* AppDelegate.m */; };
-		0C50872E18E37CE300FFA32A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872D18E37CE300FFA32A /* ViewController.m */; };
+		0C50872E18E37CE300FFA32A /* GroupViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50872D18E37CE300FFA32A /* GroupViewController.mm */; };
 		0C50873018E37CE300FFA32A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C50872F18E37CE300FFA32A /* Images.xcassets */; };
 		0C50873718E37CE300FFA32A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50873618E37CE300FFA32A /* XCTest.framework */; };
 		0C50873818E37CE300FFA32A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50871718E37CE300FFA32A /* Foundation.framework */; };
@@ -29,6 +29,7 @@
 		0C50876418E3B48D00FFA32A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50876318E3B48D00FFA32A /* GLKit.framework */; };
 		0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */; };
 		0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C50876C18E3E78600FFA32A /* Main.storyboard */; };
+		39859E5F1911CEE9007C1C30 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39859E5E1911CEE9007C1C30 /* opencv2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,8 +53,8 @@
 		0C50872518E37CE300FFA32A /* FinalProject-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FinalProject-Prefix.pch"; sourceTree = "<group>"; };
 		0C50872618E37CE300FFA32A /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		0C50872718E37CE300FFA32A /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		0C50872C18E37CE300FFA32A /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		0C50872D18E37CE300FFA32A /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		0C50872C18E37CE300FFA32A /* GroupViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupViewController.h; sourceTree = "<group>"; };
+		0C50872D18E37CE300FFA32A /* GroupViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GroupViewController.mm; sourceTree = "<group>"; };
 		0C50872F18E37CE300FFA32A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0C50873518E37CE300FFA32A /* FinalProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinalProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0C50873618E37CE300FFA32A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -77,6 +78,7 @@
 		0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotTimerViewController2.h; sourceTree = "<group>"; };
 		0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShotTimerViewController2.mm; sourceTree = "<group>"; };
 		0C50876C18E3E78600FFA32A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		39859E5E1911CEE9007C1C30 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39859E5F1911CEE9007C1C30 /* opencv2.framework in Frameworks */,
 				0C50876218E3B48100FFA32A /* AVFoundation.framework in Frameworks */,
 				0C50871A18E37CE300FFA32A /* CoreGraphics.framework in Frameworks */,
 				0C50871C18E37CE300FFA32A /* UIKit.framework in Frameworks */,
@@ -145,10 +148,10 @@
 				0C50872718E37CE300FFA32A /* AppDelegate.m */,
 				0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */,
 				0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */,
-				0C50872C18E37CE300FFA32A /* ViewController.h */,
 				0C50874F18E3ABBF00FFA32A /* ShotTimerViewController.h */,
 				0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */,
-				0C50872D18E37CE300FFA32A /* ViewController.m */,
+				0C50872C18E37CE300FFA32A /* GroupViewController.h */,
+				0C50872D18E37CE300FFA32A /* GroupViewController.mm */,
 				0C50875218E3ACBB00FFA32A /* HelperFiles */,
 				0C50872F18E37CE300FFA32A /* Images.xcassets */,
 				0C50871E18E37CE300FFA32A /* Supporting Files */,
@@ -159,6 +162,7 @@
 		0C50871E18E37CE300FFA32A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				39859E5E1911CEE9007C1C30 /* opencv2.framework */,
 				0C50871F18E37CE300FFA32A /* FinalProject-Info.plist */,
 				0C50872018E37CE300FFA32A /* InfoPlist.strings */,
 				0C50872318E37CE300FFA32A /* main.m */,
@@ -246,7 +250,7 @@
 		0C50870C18E37CE300FFA32A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0500;
+				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "CONNER KNUTSON";
 				TargetAttributes = {
 					0C50873418E37CE300FFA32A = {
@@ -300,7 +304,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */,
-				0C50872E18E37CE300FFA32A /* ViewController.m in Sources */,
+				0C50872E18E37CE300FFA32A /* GroupViewController.mm in Sources */,
 				0C50872818E37CE300FFA32A /* AppDelegate.m in Sources */,
 				0C50875118E3ABBF00FFA32A /* ShotTimerViewController.mm in Sources */,
 				0C50875F18E3ACE500FFA32A /* Novocaine.m in Sources */,
@@ -353,7 +357,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -392,7 +395,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -426,6 +428,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FinalProject",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FinalProject/FinalProject-Prefix.pch";
 				INFOPLIST_FILE = "FinalProject/FinalProject-Info.plist";
@@ -439,6 +445,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FinalProject",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "FinalProject/FinalProject-Prefix.pch";
 				INFOPLIST_FILE = "FinalProject/FinalProject-Info.plist";
@@ -450,7 +460,6 @@
 		0C50874A18E37CE300FFA32A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FinalProject.app/FinalProject";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
@@ -473,7 +482,6 @@
 		0C50874B18E37CE300FFA32A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/FinalProject.app/FinalProject";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
