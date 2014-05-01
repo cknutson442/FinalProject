@@ -17,7 +17,7 @@
 #define localMaxWindowSize2 7
 
 #define magValue 20
-#define magTolerance 10
+#define magTolerance 5
 #define freqValue 700
 #define freqTolerance 100
 
@@ -167,6 +167,8 @@ int minutes2 = 0;
     
     [self startTimerMethod];
     
+    NSLog(@"\n\nPassed in values:\nMag: %.2f Freq: %.2f\n\n",_magVal,_freqVal);
+    
 }
 
 #pragma mark - unloading and dealloc
@@ -291,7 +293,7 @@ int minutes2 = 0;
     //NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
     //NSLog(@"%d     %.2f     %d",magValue-magTolerance,loudestShot2,magValue+magTolerance);
     //NSLog(@"%d     %.2f     %d",freqValue-freqTolerance,(ind1b*(audioManager2.samplingRate/kBufferLength2)),freqValue+freqTolerance);
-    if((loudestShot2>magValue-magTolerance && loudestShot2<magValue+magTolerance) && ((ind1b*(audioManager2.samplingRate/kBufferLength2))>freqValue-freqTolerance && (ind1b*(audioManager2.samplingRate/kBufferLength2))<freqValue+freqTolerance))
+    if((loudestShot2>_magVal-magTolerance && loudestShot2<_magVal+magTolerance) && ((ind1b*(audioManager2.samplingRate/kBufferLength2))>_freqVal-freqTolerance && (ind1b*(audioManager2.samplingRate/kBufferLength2))<_freqVal+freqTolerance))
     {
         NSLog(@"The frequency in range is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
         [self stopTimer:nil];

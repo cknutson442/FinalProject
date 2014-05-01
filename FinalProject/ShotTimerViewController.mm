@@ -37,8 +37,12 @@ GraphHelper *graphHelper;
 float *audioData;
 SMUFFTHelper *fftHelper;
 float *fftMagnitudeBuffer;
+float *fftMagnitudeBufferdB;
 float *fftPhaseBuffer;
 float loudestShot;
+float loudestFreq;
+float tempLoudestShot;
+float tempLoudestFreq;
 
 int seconds = 10;
 int minutes = 0;
@@ -104,7 +108,7 @@ int minutes = 0;
     
     //graphHelper->tearDownGL();
 
-    
+    loudestShot = 0;
     audioManager = [Novocaine audioManager];
     ringBuffer = new RingBuffer(kBufferLength,2);
     
@@ -113,6 +117,7 @@ int minutes = 0;
     //setup the fft
     fftHelper = new SMUFFTHelper(kBufferLength,kBufferLength,WindowTypeRect);
     fftMagnitudeBuffer = (float *)calloc(kBufferLength/2,sizeof(float));
+    fftMagnitudeBufferdB = (float *)calloc(kBufferLength/2,sizeof(float));
     fftPhaseBuffer     = (float *)calloc(kBufferLength/2,sizeof(float));
     
     
@@ -251,15 +256,24 @@ int minutes = 0;
     
     
     //here I want to convert the magnitude into decibels!
-    loudestShot = fftMagnitudeBuffer[ind1];
+    //tempLoudestShot = fftMagnitudeBuffer[ind1];
+    float y = 1;
+    vDSP_vdbcon(fftMagnitudeBuffer, 1, &y, fftMagnitudeBufferdB, 1, kBufferLength/2, 0);
+    tempLoudestShot = fftMagnitudeBufferdB[ind1];
+    tempLoudestFreq = ind1*(audioManager.samplingRate/kBufferLength);
+
     
     
     
     
     
-    
-    if(loudestShot > 20.0 /*&& fftMagnitudeBuffer[ind2] > .8*/)
+    if(tempLoudestShot > loudestShot && tempLoudestShot > 10.0 /*&& fftMagnitudeBuffer[ind2] > .8*/)
     {
+        loudestShot = tempLoudestShot;
+        /*vDSP_vdbcon(fftMagnitudeBuffer, 1, &y, fftMagnitudeBufferdB, 1, kBufferLength/2, 0);
+        loudestShot = fftMagnitudeBufferdB[ind1];
+        loudestFreq = ind1*(audioManager.samplingRate/kBufferLength);*/
+        loudestFreq = tempLoudestFreq;
         NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1*(audioManager.samplingRate/kBufferLength)),loudestShot);
         _freqLabel.text = [NSString stringWithFormat:@"%.2f Hz",ind1*(audioManager.samplingRate/kBufferLength)];
         _magLabel.text = [NSString stringWithFormat:@"%.2f dB",loudestShot];
@@ -284,6 +298,23 @@ int minutes = 0;
     return YES;
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"secondScreen"]){
+        //ViewControllerB *controller = (ViewControllerB *)segue.destinationViewController;
+//        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        //ShotTimerViewController2* tmp = (ShotTimerViewController2*)[segue destinationViewController];
+        ShotTimerViewController2* tmp = (ShotTimerViewController2*)segue.destinationViewController;
+        NSLog(@"\n\nPassing values:\nMag: %.2f Freq: %.2f\n\n",loudestShot,loudestFreq);
+        tmp.magVal = loudestShot;
+        tmp.freqVal = loudestFreq;
+    }
+    //[segue destinationViewController];
+    
+    
+    
+    
+}
 
 
 //- (void)didReceiveMemoryWarning

@@ -14,7 +14,11 @@
     NSTimer *timer2;
 }
 
-@property (nonatomic) float shotMag;
-@property (nonatomic) float shotFreq;
+//@property (nonatomic) float shotMag;
+//@property (nonatomic) float shotFreq;
+
+@property (nonatomic) float magVal;
+@property (nonatomic) float freqVal;
+
 
 @end
