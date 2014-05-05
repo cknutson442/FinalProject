@@ -97,9 +97,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-I6-7Pq">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-I6-7Pq">
                                 <rect key="frame" x="0.0" y="65" width="320" height="432"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtg-Rp-o6r">
+                                <rect key="frame" x="0.0" y="65" width="320" height="432"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nj-Im-Q0T">
                                 <rect key="frame" x="20" y="498" width="280" height="21"/>
@@ -108,7 +112,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-oI-cNR">
-                                <rect key="frame" x="-10" y="531" width="330" height="44"/>
+                                <rect key="frame" x="-5" y="531" width="330" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem title="Load Image" id="Wmd-ZC-ccK">
@@ -129,9 +133,20 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="l5b-xc-Bzf"/>
+                    <navigationItem key="navigationItem" id="l5b-xc-Bzf">
+                        <nil key="title"/>
+                        <slider key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="aYH-du-yBe">
+                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <connections>
+                                <action selector="sliderValueChanged:" destination="wCt-LH-RfI" eventType="valueChanged" id="BEX-eP-YAw"/>
+                            </connections>
+                        </slider>
+                    </navigationItem>
                     <connections>
-                        <outlet property="imageView" destination="XKp-I6-7Pq" id="xBT-8a-cZk"/>
+                        <outlet property="_labelValue" destination="7nj-Im-Q0T" id="7dC-2W-D8b"/>
+                        <outlet property="_slider" destination="aYH-du-yBe" id="7al-Jm-G3M"/>
+                        <outlet property="imageView" destination="gtg-Rp-o6r" id="KOF-8j-qDB"/>
                         <outlet property="objectSizeLabel" destination="7nj-Im-Q0T" id="q6s-e0-MK6"/>
                         <outlet property="tempImageView" destination="XKp-I6-7Pq" id="Oa6-X2-s4g"/>
                     </connections>
