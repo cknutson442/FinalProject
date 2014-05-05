@@ -32,7 +32,7 @@ UIImage* image2;
 - (void)viewDidLoad{
     [super viewDidLoad];
     
-
+    
     
     _labelValue.text = [NSString stringWithFormat:@"%.2f - %.2f", _min, _max];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -46,45 +46,45 @@ UIImage* image2;
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary *)editingInfo{
     [picker dismissModalViewControllerAnimated:YES];
     
-//    medianBlur(imageMat,imageMat,5);
-//
-//    imageMat = [self cvMatFromUIImage:image];
-//    //    cvtColor(img, cimg, COLOR_GRAY2BGR);
-//    cvtColor(imageMat, imageMat2, CV_RGB2GRAY);
-//    
-//    
-//    //split(imageMat,BGR);
-//    
-//    cv::vector<cv::Vec3f>circles;
-//    HoughCircles(imageMat2, circles, CV_HOUGH_GRADIENT, 1, 10,
-//                 100, 30, 1, 30
-//                 
-//                 );
-//    
-//    for(size_t i = 0; i < circles.size(); i++)
-//    {
-////        Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
-//        int radius = cvRound(circles[i][2]);
-////        // circle center
-////        circle( src, center, 3, Scalar(0,255,0), -1, 8, 0 );
-////        // circle outline
-////        circle( src, center, radius, Scalar(0,0,255), 3, 8, 0 );
-////        cv::Vec3i c = circles[i];
-////        circle( imageMat2, Point(c[0], c[1]), c[2], Scalar(0,0,255), 3, LINE_AA);
-////        circle( imageMat2, Point(c[0], c[1]), 2, Scalar(0,255,0), 3, LINE_AA);
-//        
-//        NSLog(@"%d",radius);
-//        
-//    }
+    //    medianBlur(imageMat,imageMat,5);
+    //
+    //    imageMat = [self cvMatFromUIImage:image];
+    //    //    cvtColor(img, cimg, COLOR_GRAY2BGR);
+    //    cvtColor(imageMat, imageMat2, CV_RGB2GRAY);
+    //
+    //
+    //    //split(imageMat,BGR);
+    //
+    //    cv::vector<cv::Vec3f>circles;
+    //    HoughCircles(imageMat2, circles, CV_HOUGH_GRADIENT, 1, 10,
+    //                 100, 30, 1, 30
+    //
+    //                 );
+    //
+    //    for(size_t i = 0; i < circles.size(); i++)
+    //    {
+    ////        Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+    //        int radius = cvRound(circles[i][2]);
+    ////        // circle center
+    ////        circle( src, center, 3, Scalar(0,255,0), -1, 8, 0 );
+    ////        // circle outline
+    ////        circle( src, center, radius, Scalar(0,0,255), 3, 8, 0 );
+    ////        cv::Vec3i c = circles[i];
+    ////        circle( imageMat2, Point(c[0], c[1]), c[2], Scalar(0,0,255), 3, LINE_AA);
+    ////        circle( imageMat2, Point(c[0], c[1]), 2, Scalar(0,255,0), 3, LINE_AA);
+    //
+    //        NSLog(@"%d",radius);
+    //
+    //    }
     
     //_imageView.image = [self UIImageFromCVMat:imageMat];
     iplImage =[self CreateIplImageFromUIImage:image];
     [self didCaptureIplImage:iplImage];
-
+    
     //image2 = [ self UIImageFromIplImage:iplImage];
     //_imageView.image = image2;
-
-
+    
+    
 }
 
 - (IBAction)sliderValueChanged:(id)sender {
@@ -143,7 +143,7 @@ static BOOL _debug = NO;
     
     //filter all pixels in defined range, everything in range will be white, everything else
     //is going to be black
-    cvInRangeS(imgHSV, Scalar(_min, 100, 100), Scalar(_max, 255, 255), imgThreshed);
+    cvInRangeS(imgHSV, Scalar(0, 0, 0), Scalar(_max, 0, 0), imgThreshed);
     cvReleaseImage(&imgHSV);
     
     Mat matThreshed = Mat(imgThreshed);
@@ -160,7 +160,11 @@ static BOOL _debug = NO;
     if (_debug)
     {
         cvReleaseImage(&imgRGB);
-        [self UIImageFromIplImage:imgThreshed];
+        //        _imageView.image = [self UIImageFromIplImage:imgThreshed];
+        
+        Mat coba(imgThreshed);
+        _imageView.image = [self UIImageFromCVMat:matThreshed];
+        
         //[self didFinishProcessingImage:imgThreshed];
     }
     else
@@ -171,24 +175,24 @@ static BOOL _debug = NO;
         HoughCircles(matThreshed,
                      circles,
                      CV_HOUGH_GRADIENT,
-                     2,
-                     matThreshed.rows / 4,
+                     1,
+                     1,
                      150,
-                     75,
-                     10,
-                     150);
-    
-    NSLog(@"%lu",circles.size());
+                     31,
+                     0,
+                     0);
+        
+        NSLog(@"%lu",circles.size());
         
         for (size_t i = 0; i < circles.size(); i++)
         {
-            cout << "Circle position x = " << (int)circles[i][0] << ", y = " << (int)circles[i][1] << ", radius = " << (int)circles[i][2] << "\n";
+            //            cout << "Circle position x = " << (int)circles[i][0] << ", y = " << (int)circles[i][1] << ", radius = " << (int)circles[i][2] << "\n";
             
             cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
             
             int radius = cvRound(circles[i][2]);
-                    NSLog(@"%d",radius);
-
+            //                    NSLog(@"%d",radius);
+            
             circle(matRGB, center, 3, Scalar(0, 255, 0), -1, 8, 0);
             circle(matRGB, center, radius, Scalar(0, 0, 255), 3, 8, 0);
         }
@@ -199,8 +203,8 @@ static BOOL _debug = NO;
         //imgRGB will be released once it is not needed, the didFinishProcessingImage:
         //method will take care of that
         //[self didFinishProcessingImage:imgRGB];
-    
-    _imageView.image = [self UIImageFromIplImage:imgRGB];
+        
+        _imageView.image = [self UIImageFromIplImage:imgRGB];
     }
 }
 
@@ -210,13 +214,13 @@ static BOOL _debug = NO;
     
     orientation = image.imageOrientation;
     CGFloat cols,rows;
-    if(orientation == UIImageOrientationUp){
-        cols = image.size.height;
-        rows = image.size.width;
-    }
-    else{
+    if(orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight){
         cols = image.size.width;
         rows = image.size.height;
+    }
+    else{
+        cols = image.size.height;
+        rows = image.size.width;
     }
     CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
     // Creating temporal IplImage for drawing
@@ -255,7 +259,7 @@ static BOOL _debug = NO;
     CGDataProviderRef provider =
     CGDataProviderCreateWithCFData((CFDataRef)data);
     
-
+    
     
     // Creating CGImage from chunk of IplImage
     CGImageRef imageRef = CGImageCreate(
@@ -265,7 +269,7 @@ static BOOL _debug = NO;
                                         provider, NULL, false, kCGRenderingIntentDefault
                                         );
     // Getting UIImage from CGImage
-    UIImage *ret = [UIImage imageWithCGImage:imageRef];
+    UIImage *ret = [UIImage imageWithCGImage:imageRef scale:1 orientation:orientation];
     
     CGImageRelease(imageRef);
     CGDataProviderRelease(provider);
@@ -305,7 +309,7 @@ static BOOL _debug = NO;
     }
     
     NSLog(@"width: @%f height: @%f", cols, rows);
-
+    
     medianBlur(imageMat,imageMat,5);
     
     cv::Mat cvMat(rows, cols, CV_8UC4);
@@ -395,12 +399,12 @@ static BOOL _debug = NO;
 
 //-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
 //    UITouch *touch = [touches anyObject];
-//    
+//
 //    if ([touch view] == _tempImageView)
 //    {
 //        //getPosition
 //        CGPoint touchPoint = [touch locationInView:_tempImageView];
-//        
+//
 //        //conditioning if pixel is an edge
 //        if ([self checkEdge:touchPoint kernelSize:5]) {
 //            //            _statusClick.text = @"clickable";
@@ -414,11 +418,11 @@ static BOOL _debug = NO;
 //}
 //
 //- (void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
-//    
+//
 //    mouseSwiped = YES;
 //    UITouch *touch = [touches anyObject];
 //    CGPoint currentPoint = [touch locationInView:_tempImageView];
-//    
+//
 //    if (lastPoint.x == -1) {
 //        lastPoint = currentPoint;
 //    }
@@ -432,7 +436,7 @@ static BOOL _debug = NO;
 //            CGContextSetLineWidth(UIGraphicsGetCurrentContext(), 5 );
 //            CGContextSetRGBStrokeColor(UIGraphicsGetCurrentContext(), 255, 0, 0, 1.0);
 //            CGContextSetBlendMode(UIGraphicsGetCurrentContext(),kCGBlendModeNormal);
-//            
+//
 //            CGContextStrokePath(UIGraphicsGetCurrentContext());
 //            self.tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
 //            [self.tempImageView setAlpha:1];
@@ -444,7 +448,7 @@ static BOOL _debug = NO;
 //}
 //
 //- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    
+//
 //    if(!mouseSwiped) {
 //        UIGraphicsBeginImageContext(self.tempImageView.frame.size);
 //        [self.tempImageView.image drawInRect:CGRectMake(0, 0, self.tempImageView.frame.size.width, self.tempImageView.frame.size.height)];
@@ -458,7 +462,7 @@ static BOOL _debug = NO;
 //        self.tempImageView.image = UIGraphicsGetImageFromCurrentImageContext();
 //        UIGraphicsEndImageContext();
 //    }
-//    
+//
 //    UIGraphicsBeginImageContext(self.imageView.frame.size);
 //    [self.imageView.image drawInRect:CGRectMake(0, 0, self.imageView.image.size.width, self.imageView.image.size.height) blendMode:kCGBlendModeNormal alpha:1.0];
 //    [self.tempImageView.image drawInRect:CGRectMake(0, 0, self.tempImageView.image.size.width, self.tempImageView.image.size.height) blendMode:kCGBlendModeNormal alpha:1];
