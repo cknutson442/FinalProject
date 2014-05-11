@@ -29,7 +29,22 @@
 		0C50876418E3B48D00FFA32A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50876318E3B48D00FFA32A /* GLKit.framework */; };
 		0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */; };
 		0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C50876C18E3E78600FFA32A /* Main.storyboard */; };
-		39859E5F1911CEE9007C1C30 /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39859E5E1911CEE9007C1C30 /* opencv2.framework */; };
+		391A1D8C191D156D0011FFCC /* HighScores.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */; };
+		391A1D8E191D17850011FFCC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D8D191D17850011FFCC /* CoreData.framework */; };
+		391A1D94191D22FC0011FFCC /* HighScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391A1D93191D22FC0011FFCC /* HighScoreTableViewController.m */; };
+		391A1D96191D38790011FFCC /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D95191D38790011FFCC /* Accelerate.framework */; };
+		391A1D98191D389E0011FFCC /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D97191D389E0011FFCC /* AssetsLibrary.framework */; };
+		391A1D9A191D38AE0011FFCC /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D99191D38AE0011FFCC /* CoreVideo.framework */; };
+		391A1D9C191D38BB0011FFCC /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D9B191D38BB0011FFCC /* CoreMedia.framework */; };
+		391A1D9E191D38CB0011FFCC /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D9D191D38CB0011FFCC /* CoreImage.framework */; };
+		391A1DA0191D38D50011FFCC /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D9F191D38D50011FFCC /* QuartzCore.framework */; };
+		391A1DA4191D3A780011FFCC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1DA3191D3A780011FFCC /* opencv2.framework */; };
+		3951248B191AED4500CA59A4 /* Cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3951248A191AED4500CA59A4 /* Cloud.png */; };
+		3974B65D191D604300795A7B /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974B65C191D604300795A7B /* Score.m */; };
+		39C97AAD191B259A00AE8326 /* scope.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AAC191B259A00AE8326 /* scope.png */; };
+		39C97AB1191B27B300AE8326 /* marker2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AB0191B27B300AE8326 /* marker2.pdf */; };
+		39C97AB3191B39C600AE8326 /* foo.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AB2191B39C600AE8326 /* foo.png */; };
+		39C97AB5191B3A4B00AE8326 /* x-1.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AB4191B3A4B00AE8326 /* x-1.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,7 +93,24 @@
 		0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotTimerViewController2.h; sourceTree = "<group>"; };
 		0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShotTimerViewController2.mm; sourceTree = "<group>"; };
 		0C50876C18E3E78600FFA32A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		39859E5E1911CEE9007C1C30 /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		391A1D8B191D156D0011FFCC /* HighScores.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HighScores.xcdatamodel; sourceTree = "<group>"; };
+		391A1D8D191D17850011FFCC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		391A1D92191D22FC0011FFCC /* HighScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreTableViewController.h; sourceTree = "<group>"; };
+		391A1D93191D22FC0011FFCC /* HighScoreTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreTableViewController.m; sourceTree = "<group>"; };
+		391A1D95191D38790011FFCC /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		391A1D97191D389E0011FFCC /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		391A1D99191D38AE0011FFCC /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		391A1D9B191D38BB0011FFCC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		391A1D9D191D38CB0011FFCC /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		391A1D9F191D38D50011FFCC /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		391A1DA3191D3A780011FFCC /* opencv2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = opencv2.framework; sourceTree = "<group>"; };
+		3951248A191AED4500CA59A4 /* Cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud.png; sourceTree = "<group>"; };
+		3974B65B191D604300795A7B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		3974B65C191D604300795A7B /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		39C97AAC191B259A00AE8326 /* scope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scope.png; sourceTree = "<group>"; };
+		39C97AB0191B27B300AE8326 /* marker2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = marker2.pdf; sourceTree = "<group>"; };
+		39C97AB2191B39C600AE8326 /* foo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foo.png; sourceTree = "<group>"; };
+		39C97AB4191B3A4B00AE8326 /* x-1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "x-1.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,7 +118,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				39859E5F1911CEE9007C1C30 /* opencv2.framework in Frameworks */,
+				391A1DA0191D38D50011FFCC /* QuartzCore.framework in Frameworks */,
+				391A1D9E191D38CB0011FFCC /* CoreImage.framework in Frameworks */,
+				391A1D9C191D38BB0011FFCC /* CoreMedia.framework in Frameworks */,
+				391A1D9A191D38AE0011FFCC /* CoreVideo.framework in Frameworks */,
+				391A1D98191D389E0011FFCC /* AssetsLibrary.framework in Frameworks */,
+				391A1DA4191D3A780011FFCC /* opencv2.framework in Frameworks */,
+				391A1D96191D38790011FFCC /* Accelerate.framework in Frameworks */,
+				391A1D8E191D17850011FFCC /* CoreData.framework in Frameworks */,
 				0C50876218E3B48100FFA32A /* AVFoundation.framework in Frameworks */,
 				0C50871A18E37CE300FFA32A /* CoreGraphics.framework in Frameworks */,
 				0C50871C18E37CE300FFA32A /* UIKit.framework in Frameworks */,
@@ -130,6 +169,14 @@
 		0C50871618E37CE300FFA32A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				391A1DA3191D3A780011FFCC /* opencv2.framework */,
+				391A1D9F191D38D50011FFCC /* QuartzCore.framework */,
+				391A1D9D191D38CB0011FFCC /* CoreImage.framework */,
+				391A1D9B191D38BB0011FFCC /* CoreMedia.framework */,
+				391A1D99191D38AE0011FFCC /* CoreVideo.framework */,
+				391A1D97191D389E0011FFCC /* AssetsLibrary.framework */,
+				391A1D95191D38790011FFCC /* Accelerate.framework */,
+				391A1D8D191D17850011FFCC /* CoreData.framework */,
 				0C50876318E3B48D00FFA32A /* GLKit.framework */,
 				0C50876118E3B48100FFA32A /* AVFoundation.framework */,
 				0C50871718E37CE300FFA32A /* Foundation.framework */,
@@ -152,6 +199,10 @@
 				0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */,
 				0C50872C18E37CE300FFA32A /* GroupViewController.h */,
 				0C50872D18E37CE300FFA32A /* GroupViewController.mm */,
+				391A1D92191D22FC0011FFCC /* HighScoreTableViewController.h */,
+				391A1D93191D22FC0011FFCC /* HighScoreTableViewController.m */,
+				3974B65B191D604300795A7B /* Score.h */,
+				3974B65C191D604300795A7B /* Score.m */,
 				0C50875218E3ACBB00FFA32A /* HelperFiles */,
 				0C50872F18E37CE300FFA32A /* Images.xcassets */,
 				0C50871E18E37CE300FFA32A /* Supporting Files */,
@@ -162,8 +213,13 @@
 		0C50871E18E37CE300FFA32A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				39859E5E1911CEE9007C1C30 /* opencv2.framework */,
+				39C97AB4191B3A4B00AE8326 /* x-1.png */,
+				391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */,
+				39C97AB2191B39C600AE8326 /* foo.png */,
+				39C97AAC191B259A00AE8326 /* scope.png */,
 				0C50871F18E37CE300FFA32A /* FinalProject-Info.plist */,
+				3951248A191AED4500CA59A4 /* Cloud.png */,
+				39C97AB0191B27B300AE8326 /* marker2.pdf */,
 				0C50872018E37CE300FFA32A /* InfoPlist.strings */,
 				0C50872318E37CE300FFA32A /* main.m */,
 				0C50872518E37CE300FFA32A /* FinalProject-Prefix.pch */,
@@ -282,9 +338,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39C97AB5191B3A4B00AE8326 /* x-1.png in Resources */,
+				39C97AB3191B39C600AE8326 /* foo.png in Resources */,
 				0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */,
 				0C50873018E37CE300FFA32A /* Images.xcassets in Resources */,
+				39C97AAD191B259A00AE8326 /* scope.png in Resources */,
 				0C50872218E37CE300FFA32A /* InfoPlist.strings in Resources */,
+				3951248B191AED4500CA59A4 /* Cloud.png in Resources */,
+				39C97AB1191B27B300AE8326 /* marker2.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,10 +368,13 @@
 				0C50872E18E37CE300FFA32A /* GroupViewController.mm in Sources */,
 				0C50872818E37CE300FFA32A /* AppDelegate.m in Sources */,
 				0C50875118E3ABBF00FFA32A /* ShotTimerViewController.mm in Sources */,
+				391A1D94191D22FC0011FFCC /* HighScoreTableViewController.m in Sources */,
 				0C50875F18E3ACE500FFA32A /* Novocaine.m in Sources */,
+				3974B65D191D604300795A7B /* Score.m in Sources */,
 				0C50875D18E3ACE500FFA32A /* AudioFileReader.mm in Sources */,
 				0C50872418E37CE300FFA32A /* main.m in Sources */,
 				0C50875E18E3ACE500FFA32A /* AudioFileWriter.m in Sources */,
+				391A1D8C191D156D0011FFCC /* HighScores.xcdatamodeld in Sources */,
 				0C50876018E3ACE500FFA32A /* RingBuffer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,10 +490,12 @@
 		0C50874718E37CE300FFA32A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/FinalProject",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -443,10 +509,12 @@
 		0C50874818E37CE300FFA32A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
+					"$(PROJECT_DIR)",
 					"$(PROJECT_DIR)/FinalProject",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -528,6 +596,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				391A1D8B191D156D0011FFCC /* HighScores.xcdatamodel */,
+			);
+			currentVersion = 391A1D8B191D156D0011FFCC /* HighScores.xcdatamodel */;
+			path = HighScores.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0C50870C18E37CE300FFA32A /* Project object */;
 }

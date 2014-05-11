@@ -7,8 +7,77 @@
 //
 
 #import "AppDelegate.h"
-
 @implementation AppDelegate
+
+@synthesize managedObjectContext = _managedObjectContext;
+@synthesize managedObjectModel = _managedObjectModel;
+@synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
+
+- (NSManagedObjectContext *) managedObjectContext {
+    if (_managedObjectContext != nil) {
+        return _managedObjectContext;
+    }
+    NSPersistentStoreCoordinator *coordinator = [self persistentStoreCoordinator];
+    if (coordinator != nil) {
+        _managedObjectContext = [[NSManagedObjectContext alloc] init];
+        [_managedObjectContext setPersistentStoreCoordinator: coordinator];
+    }
+    
+    return _managedObjectContext;
+}
+
+//2
+- (NSManagedObjectModel *)managedObjectModel {
+    if (_managedObjectModel != nil) {
+        return _managedObjectModel;
+    }
+    _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+    
+    return _managedObjectModel;
+}
+
+//3
+- (NSPersistentStoreCoordinator *)persistentStoreCoordinator {
+    if (_persistentStoreCoordinator != nil) {
+        return _persistentStoreCoordinator;
+    }
+//    NSURL *docURL = [self applicationDocumentsDirectory];
+    NSURL *storeURL = [NSURL fileURLWithPath:[[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"HighScores.sqlite"]];
+    
+    //NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HighScores.sqlite"];
+    NSError *error = nil;
+    _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
+                                   initWithManagedObjectModel:[self managedObjectModel]];
+    if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
+                                                  configuration:nil URL:storeURL options:nil error:&error]) {
+        NSLog(@"Not working pStore");
+        /*Error for store creation should be handled in here*/
+    }
+    
+    return _persistentStoreCoordinator;
+}
+
+- (NSString *)applicationDocumentsDirectory {
+    return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
+}
+
+-(NSArray*)getScores
+{
+    // initializing NSFetchRequest
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    
+    //Setting Entity to be Queried
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Score"
+                                              inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entity];
+    NSError* error;
+    
+    // Query on managedObjectContext With Generated fetchRequest
+    NSArray *fetchedScores = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    
+    // Returning Fetched Records
+    return fetchedScores;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {

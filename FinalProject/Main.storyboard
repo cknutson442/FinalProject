@@ -75,6 +75,26 @@
                                             <segue destination="EUk-zI-6Hi" kind="push" id="xGQ-OX-T53"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" textLabel="Q5m-eb-T3Z" style="IBUITableViewCellStyleDefault" id="HIL-tO-5GB">
+                                        <rect key="frame" x="0.0" y="196" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="HIL-tO-5GB" id="Uz0-mD-XZG">
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="High Scores" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q5m-eb-T3Z">
+                                                    <rect key="frame" x="15" y="0.0" width="270" height="43"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="bsc-8B-t1C" kind="push" id="FlQ-RS-mPE"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -97,13 +117,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XKp-I6-7Pq">
-                                <rect key="frame" x="0.0" y="65" width="320" height="432"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gtg-Rp-o6r">
-                                <rect key="frame" x="0.0" y="65" width="320" height="432"/>
+                                <rect key="frame" x="0.0" y="67" width="320" height="432"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7nj-Im-Q0T">
                                 <rect key="frame" x="20" y="498" width="280" height="21"/>
@@ -111,47 +128,106 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LoL-oI-cNR">
-                                <rect key="frame" x="-5" y="531" width="330" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Load Image" id="Wmd-ZC-ccK">
-                                        <connections>
-                                            <action selector="pickImageFromGallery:" destination="wCt-LH-RfI" id="i1m-vS-U0K"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="18" style="plain" systemItem="fixedSpace" id="Xx2-qD-mhi"/>
-                                    <barButtonItem title="Take Picture" id="KTb-cc-Uaf">
-                                        <connections>
-                                            <action selector="takePictureFromCamera:" destination="wCt-LH-RfI" id="Idi-Xp-XX5"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem width="19" style="plain" systemItem="fixedSpace" id="22L-tB-F8D"/>
-                                    <barButtonItem title="Settings" id="Aqw-e2-6bj"/>
-                                </items>
-                            </toolbar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RrO-Ym-aTl">
+                                <rect key="frame" x="143" y="518" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Save">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="saveImage" destination="wCt-LH-RfI" eventType="touchUpInside" id="hE0-vh-t8X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s98-7H-QYd">
+                                <rect key="frame" x="219" y="518" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="take picture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="takePictureFromCamera:" destination="wCt-LH-RfI" eventType="touchUpInside" id="Uud-QI-1cO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVl-PA-DF5">
+                                <rect key="frame" x="20" y="527" width="81" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="load picture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="pickImageFromGallery:" destination="wCt-LH-RfI" eventType="touchUpInside" id="mC3-F3-Etd"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6x6-qr-fhh">
+                                <rect key="frame" x="106" y="453" width="109" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Calculate Score">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="calculate" destination="wCt-LH-RfI" eventType="touchUpInside" id="D2W-vG-uIG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="HhV-0t-rpn" appends="YES" id="lG2-Yb-cGQ"/>
+                            <outletCollection property="gestureRecognizers" destination="gsh-ab-fkD" appends="YES" id="Dxa-z7-E8J"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="l5b-xc-Bzf">
                         <nil key="title"/>
-                        <slider key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="aYH-du-yBe">
-                            <rect key="frame" x="8" y="8" width="304" height="29"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="4dl-2K-crP">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="1zq-FG-eAI">
+                                <rect key="frame" x="16" y="5" width="128" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="delete current">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="deleteCurrentMarker" destination="wCt-LH-RfI" eventType="touchUpInside" id="19s-uF-dRm"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                        <button key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="uP4-Sw-ZxT">
+                            <rect key="frame" x="150" y="6" width="111" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <state key="normal" title="add bullet">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
                             <connections>
-                                <action selector="sliderValueChanged:" destination="wCt-LH-RfI" eventType="valueChanged" id="BEX-eP-YAw"/>
+                                <action selector="addShots" destination="wCt-LH-RfI" eventType="touchUpInside" id="db4-Ls-cT4"/>
                             </connections>
-                        </slider>
+                        </button>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ebi-6s-4zM">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="OKF-KP-eGW">
+                                <rect key="frame" x="274" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="set">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="setMarker" destination="wCt-LH-RfI" eventType="touchUpInside" id="zcS-zr-QWk"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="_labelValue" destination="7nj-Im-Q0T" id="7dC-2W-D8b"/>
-                        <outlet property="_slider" destination="aYH-du-yBe" id="7al-Jm-G3M"/>
+                        <outlet property="addShotsButton" destination="uP4-Sw-ZxT" id="m99-GV-Xb1"/>
+                        <outlet property="calculateScoreButton" destination="6x6-qr-fhh" id="wVz-wa-kck"/>
+                        <outlet property="deleteCurrentButton" destination="1zq-FG-eAI" id="7VC-gn-gqV"/>
                         <outlet property="imageView" destination="gtg-Rp-o6r" id="KOF-8j-qDB"/>
                         <outlet property="objectSizeLabel" destination="7nj-Im-Q0T" id="q6s-e0-MK6"/>
-                        <outlet property="tempImageView" destination="XKp-I6-7Pq" id="Oa6-X2-s4g"/>
+                        <outlet property="setMarkerButton" destination="OKF-KP-eGW" id="3yX-lp-bPH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jNu-Lm-Pq6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="HhV-0t-rpn"/>
+                <swipeGestureRecognizer direction="right" id="gsh-ab-fkD"/>
             </objects>
             <point key="canvasLocation" x="2304" y="-662"/>
         </scene>
@@ -181,6 +257,35 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OCQ-PE-hsa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2304" y="116"/>
+        </scene>
+        <!--High Score Table View Controller-->
+        <scene sceneID="gEz-S6-gV0">
+            <objects>
+                <tableViewController id="bsc-8B-t1C" customClass="HighScoreTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="ap4-sF-Me8">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="scoreCell" id="jJ3-VK-E0v">
+                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jJ3-VK-E0v" id="JBQ-96-ZbJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="bsc-8B-t1C" id="VM0-sO-zQ5"/>
+                            <outlet property="delegate" destination="bsc-8B-t1C" id="FsN-Ho-5f1"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="omS-Mk-jFJ"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="slS-UH-hUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1672" y="51"/>
         </scene>
         <!--Shot Timer View Controller-->
         <scene sceneID="SHk-9T-DFs">
