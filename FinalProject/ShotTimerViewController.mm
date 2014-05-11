@@ -58,9 +58,9 @@ int minutes = 0;
 //}
 
 - (void)startTimerMethod {
-        timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ticker:) userInfo:nil repeats:YES];
-        [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
-    }
+    timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(ticker:) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:timer forMode:NSDefaultRunLoopMode];
+}
 
 - (IBAction)stopTimer:(id)sender {
     [timer invalidate];
@@ -73,12 +73,12 @@ int minutes = 0;
 - (void)ticker:(NSTimer *)timer {
     
     
-//    if (seconds == 0 && minutes >= 1)
-//    {
-//        seconds = 59;
-//        minutes--;
-//        
-//    }
+    //    if (seconds == 0 && minutes >= 1)
+    //    {
+    //        seconds = 59;
+    //        minutes--;
+    //
+    //    }
     if (minutes ==0 && seconds ==0)
     {
         [self stopTimer:nil];
@@ -107,7 +107,7 @@ int minutes = 0;
     [super viewWillAppear:animated];
     
     //graphHelper->tearDownGL();
-
+    
     loudestShot = 0;
     audioManager = [Novocaine audioManager];
     ringBuffer = new RingBuffer(kBufferLength,2);
@@ -125,12 +125,12 @@ int minutes = 0;
     int framesPerSecond = 30;
     int numDataArraysToGraph = 2;
     graphHelper = new GraphHelper(self,
-                                   framesPerSecond,
-                                   numDataArraysToGraph,
-                                   PlotStyleSeparated);//drawing starts immediately after call
+                                  framesPerSecond,
+                                  numDataArraysToGraph,
+                                  PlotStyleSeparated);//drawing starts immediately after call
     
     graphHelper->SetBounds(-0.5,0.9,-0.9,0.9); // bottom, top, left, right, full screen==(-1,1,-1,1)
-
+    
     
     [audioManager setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
@@ -172,14 +172,14 @@ int minutes = 0;
     
     [self stopTimer:nil];
     
-
+    
 }
 
 -(void)dealloc{
     
     //graphHelper->tearDownGL();
-
-        
+    
+    
     // ARC handles everything else, just clean up what we used c++ for (calloc, malloc, new)
     
 }
@@ -207,8 +207,8 @@ int minutes = 0;
     //create variables for holding the two loudest frequencies and their indices
     float mag1 = 0;
     int ind1 = 0;
-//    float mag2 = 0;
-//    int ind2 = 0;
+    //    float mag2 = 0;
+    //    int ind2 = 0;
     float magTemp = 0;
     int indTemp = 0;
     //outer loop to go through fft
@@ -234,19 +234,19 @@ int minutes = 0;
             //loudest tone
             if(fftMagnitudeBuffer[indTemp] > fftMagnitudeBuffer[ind1])
             {
-//                mag2 = mag1;
-//                ind2 = ind1;
+                //                mag2 = mag1;
+                //                ind2 = ind1;
                 mag1 = fftMagnitudeBuffer[indTemp];
                 ind1 = indTemp;
                 
             }
             //second loudest tone
-//            else if(fftMagnitudeBuffer[indTemp] > fftMagnitudeBuffer[ind2])
-//            {
-//                mag2 = fftMagnitudeBuffer[indTemp];
-//                ind2 = indTemp;
-//                
-//            }
+            //            else if(fftMagnitudeBuffer[indTemp] > fftMagnitudeBuffer[ind2])
+            //            {
+            //                mag2 = fftMagnitudeBuffer[indTemp];
+            //                ind2 = indTemp;
+            //
+            //            }
         }
     }
     
@@ -261,7 +261,7 @@ int minutes = 0;
     vDSP_vdbcon(fftMagnitudeBuffer, 1, &y, fftMagnitudeBufferdB, 1, kBufferLength/2, 0);
     tempLoudestShot = fftMagnitudeBufferdB[ind1];
     tempLoudestFreq = ind1*(audioManager.samplingRate/kBufferLength);
-
+    
     
     
     
@@ -271,8 +271,8 @@ int minutes = 0;
     {
         loudestShot = tempLoudestShot;
         /*vDSP_vdbcon(fftMagnitudeBuffer, 1, &y, fftMagnitudeBufferdB, 1, kBufferLength/2, 0);
-        loudestShot = fftMagnitudeBufferdB[ind1];
-        loudestFreq = ind1*(audioManager.samplingRate/kBufferLength);*/
+         loudestShot = fftMagnitudeBufferdB[ind1];
+         loudestFreq = ind1*(audioManager.samplingRate/kBufferLength);*/
         loudestFreq = tempLoudestFreq;
         NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1*(audioManager.samplingRate/kBufferLength)),loudestShot);
         _freqLabel.text = [NSString stringWithFormat:@"%.2f Hz",ind1*(audioManager.samplingRate/kBufferLength)];
@@ -282,8 +282,8 @@ int minutes = 0;
         //NSLog(@"The loudest frequency is: %.2f dB",magTemp);
         //make a label to display on screen the loudest magnitude
         
-//        NSLog(@"The second loudest frequency is: %.2f Hz",(ind2*(audioManager.samplingRate/kBufferLength)));
-//        _secondValue.text = [NSString stringWithFormat:@"%.2f",ind2*(audioManager.samplingRate/kBufferLength)];
+        //        NSLog(@"The second loudest frequency is: %.2f Hz",(ind2*(audioManager.samplingRate/kBufferLength)));
+        //        _secondValue.text = [NSString stringWithFormat:@"%.2f",ind2*(audioManager.samplingRate/kBufferLength)];
     }
     
     // plot the FFT
@@ -302,7 +302,7 @@ int minutes = 0;
 {
     if([segue.identifier isEqualToString:@"secondScreen"]){
         //ViewControllerB *controller = (ViewControllerB *)segue.destinationViewController;
-//        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
+        //        UINavigationController *navController = (UINavigationController *)segue.destinationViewController;
         //ShotTimerViewController2* tmp = (ShotTimerViewController2*)[segue destinationViewController];
         ShotTimerViewController2* tmp = (ShotTimerViewController2*)segue.destinationViewController;
         NSLog(@"\n\nPassing values:\nMag: %.2f Freq: %.2f\n\n",loudestShot,loudestFreq);

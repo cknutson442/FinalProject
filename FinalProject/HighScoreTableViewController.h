@@ -10,6 +10,4 @@
 
 @interface HighScoreTableViewController : UITableViewController
 
-@property (nonatomic,strong) NSArray* fetchedScoresArray;
-
 @end

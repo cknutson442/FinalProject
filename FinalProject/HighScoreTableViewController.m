@@ -11,7 +11,7 @@
 #import "Score.h"
 
 @interface HighScoreTableViewController ()
-
+@property (nonatomic,strong) NSArray* fetchedScoresArray;
 @end
 
 @implementation HighScoreTableViewController
@@ -59,7 +59,10 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [self.fetchedScoresArray count];
+    if ([self.fetchedScoresArray count] >= 10)
+        return 10;
+    else
+        return [self.fetchedScoresArray count];
 }
 
 
@@ -69,7 +72,8 @@
     Score *tempScore = [self.fetchedScoresArray objectAtIndex:indexPath.row];
 
     cell.textLabel.text = tempScore.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",[tempScore.score floatValue] ];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",[tempScore.score floatValue]];
+    NSLog(@"%f",[tempScore.score floatValue]);
     // Configure the cell...
     
     return cell;

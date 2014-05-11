@@ -16,9 +16,9 @@
 #define kBufferLength2 4096
 #define localMaxWindowSize2 7
 
-#define magValue 20
-#define magTolerance 5
-#define freqValue 700
+//#define magValue 20
+#define magTolerance 4
+//#define freqValue 700
 #define freqTolerance 100
 
 
@@ -28,11 +28,43 @@
 //@property (weak, nonatomic) IBOutlet UILabel *timerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *timerLabel2;
 
+@property (weak, nonatomic) IBOutlet UILabel *split1;
+@property (weak, nonatomic) IBOutlet UILabel *split2;
+@property (weak, nonatomic) IBOutlet UILabel *split3;
+@property (weak, nonatomic) IBOutlet UILabel *split4;
+@property (weak, nonatomic) IBOutlet UILabel *split5;
+@property (weak, nonatomic) IBOutlet UILabel *split6;
+@property (weak, nonatomic) IBOutlet UILabel *split7;
+@property (weak, nonatomic) IBOutlet UILabel *split8;
+@property (weak, nonatomic) IBOutlet UILabel *split9;
+@property (weak, nonatomic) IBOutlet UILabel *split10;
+@property (weak, nonatomic) IBOutlet UILabel *split11;
+@property (weak, nonatomic) IBOutlet UILabel *split12;
+@property (weak, nonatomic) IBOutlet UILabel *splitTotal;
+
+@property (nonatomic,strong) AVAudioPlayer *beep;
+
 @end
 
 @implementation ShotTimerViewController2
 
+@synthesize beep;
+
 @synthesize timerLabel2;
+
+@synthesize split1;
+@synthesize split2;
+@synthesize split3;
+@synthesize split4;
+@synthesize split5;
+@synthesize split6;
+@synthesize split7;
+@synthesize split8;
+@synthesize split9;
+@synthesize split10;
+@synthesize split11;
+@synthesize split12;
+@synthesize splitTotal;
 
 
 Novocaine *audioManager2;
@@ -50,6 +82,18 @@ int milliseconds2 = 0;
 int seconds2 = 0;
 int minutes2 = 0;
 
+int shotCounter = 0;
+int splitMSTotal = 0;
+int splitSTotal = 0;
+int splitMTotal = 0;
+int splitMS[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int splitS[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int splitM[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+
+bool isListening = false;
+bool first = true;
+bool isAdding = false;
+
 
 //- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 //{
@@ -61,12 +105,73 @@ int minutes2 = 0;
 //}
 
 - (void)startTimerMethod {
+    isListening = true;
     timer2 = [NSTimer scheduledTimerWithTimeInterval:0.001 target:self selector:@selector(ticker2:) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:timer2 forMode:NSDefaultRunLoopMode];
 }
 
 - (IBAction)stopTimer:(id)sender {
+    isListening = false;
     [timer2 invalidate];
+    if(isAdding)
+    {
+        int ms = splitMSTotal%1000;
+        int s = splitMSTotal/1000 + splitSTotal%60;
+        int m = splitSTotal/60 + splitMTotal;
+        splitTotal.text = [NSString stringWithFormat:@"%d:%d.%d",m,s,ms];
+        isAdding = false;
+    }
+    
+}
+- (IBAction)startButton:(id)sender
+{
+    [self stopTimer:nil];
+    
+    minutes2 = 0;
+    seconds2 = 0;
+    milliseconds2 = 0;
+    
+    [NSThread sleepForTimeInterval:3.0];
+    
+    //make beep sound?
+    //AudioServicesPlaySystemSound(1005);
+    
+    //NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-04" ofType:<#(NSString *)#>]]
+    
+    //reset all the values
+    shotCounter = 0;
+    splitMSTotal = 0;
+    splitSTotal = 0;
+    splitMTotal = 0;
+    
+    split1.text = [NSString stringWithFormat:@"00.000"];
+    split2.text = [NSString stringWithFormat:@"00.000"];
+    split3.text = [NSString stringWithFormat:@"00.000"];
+    split4.text = [NSString stringWithFormat:@"00.000"];
+    split5.text = [NSString stringWithFormat:@"00.000"];
+    split6.text = [NSString stringWithFormat:@"00.000"];
+    split7.text = [NSString stringWithFormat:@"00.000"];
+    split8.text = [NSString stringWithFormat:@"00.000"];
+    split9.text = [NSString stringWithFormat:@"00.000"];
+    split10.text = [NSString stringWithFormat:@"00.000"];
+    split11.text = [NSString stringWithFormat:@"00.000"];
+    split12.text = [NSString stringWithFormat:@"00.000"];
+    
+    isListening = true;
+    first = true;
+    
+    [self startTimerMethod];
+}
+- (IBAction)stopButton:(id)sender
+{
+    isAdding = true;
+    [self stopTimer:nil];
+    
+    minutes2 = 0;
+    seconds2 = 0;
+    milliseconds2 = 0;
+    
+    timerLabel2.text = [NSString stringWithFormat:@"00.000"];
 }
 
 //- (void)transition {
@@ -76,6 +181,12 @@ int minutes2 = 0;
 - (void)ticker2:(NSTimer *)timer2 {
     
     //NSLog(@"Ticking...");
+    
+    if(first)
+    {
+        milliseconds2 = 500;
+        first = false;
+    }
     
     if(seconds2 == 59 && milliseconds2 == 999)
     {
@@ -100,15 +211,15 @@ int minutes2 = 0;
     //        minutes--;
     //
     //    }
-//    if (minutes ==0 && seconds ==0)
-//    {
-//        [self stopTimer:nil];
-//        [self transition];
-//        
-//        //timerLabel.text = @"00:00";
-//    } else {
-//        seconds--;
-//    }
+    //    if (minutes ==0 && seconds ==0)
+    //    {
+    //        [self stopTimer:nil];
+    //        [self transition];
+    //
+    //        //timerLabel.text = @"00:00";
+    //    } else {
+    //        seconds--;
+    //    }
     
     NSString* currentTime2 = [NSString stringWithFormat:@"%02d.%03d",seconds2,milliseconds2];
     //NSLog(@"%@",currentTime2);
@@ -129,7 +240,7 @@ int minutes2 = 0;
     [super viewWillAppear:animated];
     
     //graphHelper2->tearDownGL();
-
+    
     
     audioManager2 = [Novocaine audioManager];
     ringBuffer2 = new RingBuffer(kBufferLength2,2);
@@ -147,12 +258,12 @@ int minutes2 = 0;
     int framesPerSecond = 30;
     int numDataArraysToGraph = 2;
     graphHelper2 = new GraphHelper(self,
-                                  framesPerSecond,
-                                  numDataArraysToGraph,
-                                  PlotStyleSeparated);//drawing starts immediately after call
+                                   framesPerSecond,
+                                   numDataArraysToGraph,
+                                   PlotStyleSeparated);//drawing starts immediately after call
     
     graphHelper2->SetBounds(-0.5,0.9,-0.9,0.9); // bottom, top, left, right, full screen==(-1,1,-1,1)
-
+    
     [audioManager2 setInputBlock:^(float *data, UInt32 numFrames, UInt32 numChannels)
      {
          if(ringBuffer2!=nil)
@@ -165,7 +276,7 @@ int minutes2 = 0;
     
     [self stopTimer:nil];
     
-    [self startTimerMethod];
+    //[self startTimerMethod];
     
     NSLog(@"\n\nPassed in values:\nMag: %.2f Freq: %.2f\n\n",_magVal,_freqVal);
     
@@ -197,14 +308,14 @@ int minutes2 = 0;
     milliseconds2 = 0;
     
     [self stopTimer:nil];
-
+    
 }
 
 -(void)dealloc{
     
     //graphHelper2->tearDownGL();
-
-        
+    
+    
     // ARC handles everything else, just clean up what we used c++ for (calloc, malloc, new)
     
 }
@@ -293,32 +404,166 @@ int minutes2 = 0;
     //NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
     //NSLog(@"%d     %.2f     %d",magValue-magTolerance,loudestShot2,magValue+magTolerance);
     //NSLog(@"%d     %.2f     %d",freqValue-freqTolerance,(ind1b*(audioManager2.samplingRate/kBufferLength2)),freqValue+freqTolerance);
-    if((loudestShot2>_magVal-magTolerance && loudestShot2<_magVal+magTolerance) && ((ind1b*(audioManager2.samplingRate/kBufferLength2))>_freqVal-freqTolerance && (ind1b*(audioManager2.samplingRate/kBufferLength2))<_freqVal+freqTolerance))
+    if((loudestShot2>_magVal-magTolerance && loudestShot2<_magVal+magTolerance) && ((ind1b*(audioManager2.samplingRate/kBufferLength2))>_freqVal-freqTolerance && (ind1b*(audioManager2.samplingRate/kBufferLength2))<_freqVal+freqTolerance) && isListening)
     {
+        shotCounter++;
         NSLog(@"The frequency in range is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
         [self stopTimer:nil];
+        splitMS[shotCounter-1]=milliseconds2;
+        splitS[shotCounter-1]=seconds2;
+        splitM[shotCounter-1]=minutes2;
+        splitMSTotal += milliseconds2;
+        splitSTotal += seconds2;
+        splitMTotal += minutes2;
         timerLabel2.text = [NSString stringWithFormat:@"00.000"];
         minutes2 = 0;
         seconds2 = 0;
         milliseconds2 = 0;
         [self startTimerMethod];
+        //set labels for 12 times
+        if(shotCounter==1)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split1.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split1.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split1.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==2)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split2.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split2.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split2.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==3)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split3.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split3.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split3.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==4)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split4.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split4.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split4.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==5)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split5.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split5.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split5.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==6)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split6.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split6.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split6.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==7)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split7.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split7.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split7.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==8)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split8.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split8.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split8.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==9)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split9.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split9.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split9.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==10)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split10.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split10.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split10.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==11)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split11.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split11.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split11.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        if(shotCounter==12)
+        {
+            if(splitMS[shotCounter-1]<10)
+                split12.text = [NSString stringWithFormat:@"%d.00%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else if(splitMS[shotCounter-1]<100)
+                split12.text = [NSString stringWithFormat:@"%d.0%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+            else
+                split12.text = [NSString stringWithFormat:@"%d.%d",splitS[shotCounter-1],splitMS[shotCounter-1]];
+        }
+        NSLog(@"Shot %d recorded with %d seconds and %d milliseconds",shotCounter,splitS[shotCounter-1],splitMS[shotCounter-1]);
+        /*if(splitMSTotal >= 1000)
+         {
+         splitSTotal+=1;
+         splitMSTotal-=1000;
+         }
+         if(splitSTotal >= 60)
+         {
+         splitMTotal+=1;
+         splitSTotal-=60;
+         }
+         splitTotal.text = [NSString stringWithFormat:@"%d:%d.%d",splitMTotal,splitSTotal,splitMSTotal];*/
+        [NSThread sleepForTimeInterval:0.500];//debounce... ignore next tenth
+    }
+    if(shotCounter==12)
+    {
+        isAdding = true;
+        [self stopTimer:nil];
     }
     
     
     
     /*if(loudestShot2 > 20.0)
-    {
-        NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
-//        _freqLabel.text = [NSString stringWithFormat:@"%.2f Hz",ind1*(audioManager2.samplingRate/kBufferLength2)];
-//        _magLabel.text = [NSString stringWithFormat:@"%.2f dB",loudestShot2];
-        //_firstValue.text = [NSString stringWithFormat:@"%.2f",ind1*(audioManager.samplingRate/kBufferLength)];
-        
-        //NSLog(@"The loudest frequency is: %.2f dB",magTemp);
-        //make a label to display on screen the loudest magnitude
-        
-        //        NSLog(@"The second loudest frequency is: %.2f Hz",(ind2*(audioManager.samplingRate/kBufferLength)));
-        //        _secondValue.text = [NSString stringWithFormat:@"%.2f",ind2*(audioManager.samplingRate/kBufferLength)];
-    }*/
+     {
+     NSLog(@"The loudest frequency is: %.2f Hz with magnitude %.2f dB",(ind1b*(audioManager2.samplingRate/kBufferLength2)),loudestShot2);
+     //        _freqLabel.text = [NSString stringWithFormat:@"%.2f Hz",ind1*(audioManager2.samplingRate/kBufferLength2)];
+     //        _magLabel.text = [NSString stringWithFormat:@"%.2f dB",loudestShot2];
+     //_firstValue.text = [NSString stringWithFormat:@"%.2f",ind1*(audioManager.samplingRate/kBufferLength)];
+     
+     //NSLog(@"The loudest frequency is: %.2f dB",magTemp);
+     //make a label to display on screen the loudest magnitude
+     
+     //        NSLog(@"The second loudest frequency is: %.2f Hz",(ind2*(audioManager.samplingRate/kBufferLength)));
+     //        _secondValue.text = [NSString stringWithFormat:@"%.2f",ind2*(audioManager.samplingRate/kBufferLength)];
+     }*/
     
     // plot the FFT
     graphHelper2->setGraphData(1,fftMagnitudeBuffer2,kBufferLength2/2,sqrt(kBufferLength2)); // set graph channel

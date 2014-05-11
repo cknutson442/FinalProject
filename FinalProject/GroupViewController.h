@@ -10,7 +10,7 @@
     CGPoint location;
 
     NSMutableArray *coordinates;
-    NSMutableArray *radii;
+    NSMutableArray *shotDistances;
 
     __weak IBOutlet UIButton *addShotsButton;
     __weak IBOutlet UIButton *setMarkerButton;
@@ -18,6 +18,9 @@
     __weak IBOutlet UIButton *calculateScoreButton;
     CGFloat distance;
     int radiusDistanceConverted;
+    CGPoint phoneCenter;
+    CGFloat totalScore;
+    __weak IBOutlet UILabel *pointsLabel;
 }
 
 @property (strong, nonatomic) IBOutlet UIImageView *imageView;

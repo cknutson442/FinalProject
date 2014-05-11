@@ -1,18 +1,21 @@
 //
 //  AppDelegate.m
-//  FinalProject
+//  assignment1
 //
-//  Created by CONNER KNUTSON on 3/26/14.
-//  Copyright (c) 2014 CONNER KNUTSON. All rights reserved.
+//  Created by Hunter Houston on 1/27/14.
+//  Copyright (c) 2014 SMU. All rights reserved.
 //
 
 #import "AppDelegate.h"
+
 @implementation AppDelegate
 
 @synthesize managedObjectContext = _managedObjectContext;
 @synthesize managedObjectModel = _managedObjectModel;
+
 @synthesize persistentStoreCoordinator = _persistentStoreCoordinator;
 
+// 1
 - (NSManagedObjectContext *) managedObjectContext {
     if (_managedObjectContext != nil) {
         return _managedObjectContext;
@@ -41,50 +44,55 @@
     if (_persistentStoreCoordinator != nil) {
         return _persistentStoreCoordinator;
     }
-//    NSURL *docURL = [self applicationDocumentsDirectory];
-    NSURL *storeURL = [NSURL fileURLWithPath:[[self applicationDocumentsDirectory] stringByAppendingPathComponent:@"HighScores.sqlite"]];
-    
-    //NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"HighScores.sqlite"];
+    NSURL *storeUrl = [NSURL fileURLWithPath: [[self applicationDocumentsDirectory]
+                                               stringByAppendingPathComponent: @"Score.sqlite"]];
     NSError *error = nil;
     _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc]
                                    initWithManagedObjectModel:[self managedObjectModel]];
     if(![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType
-                                                  configuration:nil URL:storeURL options:nil error:&error]) {
-        NSLog(@"Not working pStore");
+                                                  configuration:nil URL:storeUrl options:nil error:&error]) {
         /*Error for store creation should be handled in here*/
     }
     
     return _persistentStoreCoordinator;
+}
+-(NSArray*)getScores
+{
+  
+    
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entityDescription = [NSEntityDescription
+                                              entityForName:@"Score" inManagedObjectContext:self.managedObjectContext];
+    [fetchRequest setEntity:entityDescription];
+
+    [fetchRequest setFetchLimit: 10];
+    
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"score"   ascending:NO];
+    
+    [fetchRequest setSortDescriptors:@[sortDescriptor]];
+    //[fetchRequest setPropertiesToFetch:[NSArray arrayWithObject:entityDescription]];
+
+    
+    NSError *error;
+    
+    NSArray *scoresArray = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (scoresArray == nil)
+    {
+        NSLog(@"NO SCORES");
+    }
+    
+    return scoresArray;
 }
 
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
 
--(NSArray*)getScores
-{
-    // initializing NSFetchRequest
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    
-    //Setting Entity to be Queried
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"Score"
-                                              inManagedObjectContext:self.managedObjectContext];
-    [fetchRequest setEntity:entity];
-    NSError* error;
-    
-    // Query on managedObjectContext With Generated fetchRequest
-    NSArray *fetchedScores = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    
-    // Returning Fetched Records
-    return fetchedScores;
-}
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Override point for customization after application launch.
     return YES;
 }
-							
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -93,7 +101,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 

@@ -41,6 +41,7 @@
 		391A1DA4191D3A780011FFCC /* opencv2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1DA3191D3A780011FFCC /* opencv2.framework */; };
 		3951248B191AED4500CA59A4 /* Cloud.png in Resources */ = {isa = PBXBuildFile; fileRef = 3951248A191AED4500CA59A4 /* Cloud.png */; };
 		3974B65D191D604300795A7B /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974B65C191D604300795A7B /* Score.m */; };
+		3974B660191F6B9100795A7B /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3974B65F191F6B9100795A7B /* MainScreenViewController.m */; };
 		39C97AAD191B259A00AE8326 /* scope.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AAC191B259A00AE8326 /* scope.png */; };
 		39C97AB1191B27B300AE8326 /* marker2.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AB0191B27B300AE8326 /* marker2.pdf */; };
 		39C97AB3191B39C600AE8326 /* foo.png in Resources */ = {isa = PBXBuildFile; fileRef = 39C97AB2191B39C600AE8326 /* foo.png */; };
@@ -107,6 +108,8 @@
 		3951248A191AED4500CA59A4 /* Cloud.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cloud.png; sourceTree = "<group>"; };
 		3974B65B191D604300795A7B /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
 		3974B65C191D604300795A7B /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
+		3974B65E191F6B9100795A7B /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		3974B65F191F6B9100795A7B /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		39C97AAC191B259A00AE8326 /* scope.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = scope.png; sourceTree = "<group>"; };
 		39C97AB0191B27B300AE8326 /* marker2.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = marker2.pdf; sourceTree = "<group>"; };
 		39C97AB2191B39C600AE8326 /* foo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = foo.png; sourceTree = "<group>"; };
@@ -197,12 +200,13 @@
 				0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */,
 				0C50874F18E3ABBF00FFA32A /* ShotTimerViewController.h */,
 				0C50875018E3ABBF00FFA32A /* ShotTimerViewController.mm */,
+				3974B65E191F6B9100795A7B /* MainScreenViewController.h */,
+				3974B65F191F6B9100795A7B /* MainScreenViewController.m */,
 				0C50872C18E37CE300FFA32A /* GroupViewController.h */,
 				0C50872D18E37CE300FFA32A /* GroupViewController.mm */,
 				391A1D92191D22FC0011FFCC /* HighScoreTableViewController.h */,
 				391A1D93191D22FC0011FFCC /* HighScoreTableViewController.m */,
-				3974B65B191D604300795A7B /* Score.h */,
-				3974B65C191D604300795A7B /* Score.m */,
+				3974B661191F802600795A7B /* Model */,
 				0C50875218E3ACBB00FFA32A /* HelperFiles */,
 				0C50872F18E37CE300FFA32A /* Images.xcassets */,
 				0C50871E18E37CE300FFA32A /* Supporting Files */,
@@ -214,7 +218,6 @@
 			isa = PBXGroup;
 			children = (
 				39C97AB4191B3A4B00AE8326 /* x-1.png */,
-				391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */,
 				39C97AB2191B39C600AE8326 /* foo.png */,
 				39C97AAC191B259A00AE8326 /* scope.png */,
 				0C50871F18E37CE300FFA32A /* FinalProject-Info.plist */,
@@ -260,6 +263,16 @@
 				0C50875C18E3ACE500FFA32A /* SMUGraphHelper.h */,
 			);
 			name = HelperFiles;
+			sourceTree = "<group>";
+		};
+		3974B661191F802600795A7B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */,
+				3974B65B191D604300795A7B /* Score.h */,
+				3974B65C191D604300795A7B /* Score.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -309,6 +322,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "CONNER KNUTSON";
 				TargetAttributes = {
+					0C50871318E37CE300FFA32A = {
+						DevelopmentTeam = JQR64HDZQ5;
+					};
 					0C50873418E37CE300FFA32A = {
 						TestTargetID = 0C50871318E37CE300FFA32A;
 					};
@@ -371,6 +387,7 @@
 				391A1D94191D22FC0011FFCC /* HighScoreTableViewController.m in Sources */,
 				0C50875F18E3ACE500FFA32A /* Novocaine.m in Sources */,
 				3974B65D191D604300795A7B /* Score.m in Sources */,
+				3974B660191F6B9100795A7B /* MainScreenViewController.m in Sources */,
 				0C50875D18E3ACE500FFA32A /* AudioFileReader.mm in Sources */,
 				0C50872418E37CE300FFA32A /* main.m in Sources */,
 				0C50875E18E3ACE500FFA32A /* AudioFileWriter.m in Sources */,
@@ -493,6 +510,7 @@
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -512,6 +530,7 @@
 				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
