@@ -71,8 +71,8 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"scoreCell" forIndexPath:indexPath];
     Score *tempScore = [self.fetchedScoresArray objectAtIndex:indexPath.row];
 
-    cell.textLabel.text = tempScore.name;
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%f",[tempScore.score floatValue]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%ld. %@",(indexPath.row+1),tempScore.name  ];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%2.0f",[tempScore.score floatValue]];
     NSLog(@"%f",[tempScore.score floatValue]);
     // Configure the cell...
     

@@ -541,7 +541,7 @@ bool isAdding = false;
          splitSTotal-=60;
          }
          splitTotal.text = [NSString stringWithFormat:@"%d:%d.%d",splitMTotal,splitSTotal,splitMSTotal];*/
-        [NSThread sleepForTimeInterval:0.500];//debounce... ignore next tenth
+        [NSThread sleepForTimeInterval:0.2500];//debounce... ignore next tenth
     }
     if(shotCounter==12)
     {

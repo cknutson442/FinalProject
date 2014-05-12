@@ -13,5 +13,4 @@
 
 @dynamic name;
 @dynamic score;
-
 @end

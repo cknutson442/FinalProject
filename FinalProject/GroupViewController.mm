@@ -6,6 +6,7 @@
 
 #import "AppDelegate.h"
 #import "GroupViewController.h"
+#import "HighScoreTableViewController.h"
 #import "Score.h"
 
 using namespace std;
@@ -41,6 +42,11 @@ float cvCenterY;
 float phoneCenterX;
 float phoneCenterY;
 CGFloat cvCenter;
+CGFloat tempDistance;
+
+float realUnit;
+float targetGap;
+float realDistance;
 
 float cm;
 float inches;
@@ -52,25 +58,41 @@ float inches;
 AppDelegate* appDelegate = [UIApplication sharedApplication].delegate;
 self.managedObjectContext = appDelegate.managedObjectContext;
 
+    pointsLabel.backgroundColor = [UIColor blackColor];
+    _distanceLabel.backgroundColor = [UIColor blackColor];
+    counter = 0;
+    phoneCenterX = 0.0;
+    phoneCenterY = 0.0;
+    targetRadius = 0.0;
+    CVradius = 0.0;
+    cvCenterX = 0.0;
+    cvCenterY = 0.0;
+    totalScore = 0.0;
+    cvCenter= 0.0;
     
-counter = 0;
-    phoneCenterX =0.0;
-    phoneCenterY =0.0;
-    targetRadius =0.0;
-    CVradius =0.0;
-    cvCenterX =0.0;
-    cvCenterY =0.0;
-    totalScore =0.0;
-    cvCenter=0.0;
-    
+    shotCounter=0;
+    totalScore=0;
+    realUnit=0;
+    targetGap=0.0;
+    realDistance=0.0;
+    tempDistance = 0.0;
+
+    moveX = NO;
 coordinates = [[NSMutableArray alloc] init];
+shotDistances = [[NSMutableArray alloc] init];
 
-[addShotsButton setEnabled:YES];
 [setMarkerButton setEnabled:NO];
+setMarkerButton.hidden = YES;
 [deleteCurrentButton setEnabled:NO];
+deleteCurrentButton.hidden = YES;
+[calculateScoreButton setEnabled:NO];
+calculateScoreButton.hidden = YES;
+[addShotsButton setEnabled:NO];
+    //addShotsButton.backgroundColor = [UIColor blackColor];
+    _distanceLabel.text = @"Take or load a circle picture!";
 
-_labelValue.text = [NSString stringWithFormat:@"%.2f - %.2f", _min, _max];
-// Do any additional setup after loading the view, typically from a nib.
+    //[self takePictureFromCamera];
+
 }
 
 - (void)didReceiveMemoryWarning{
@@ -97,15 +119,18 @@ HoughCircles(imageMat2, circles, CV_HOUGH_GRADIENT, 2, imageMat2.rows/4, 100, 20
 
 NSLog(@"%lu",circles.size());
     if (circles.size() == 1){
-        
+        _distanceLabel.text = @"Nice pic!";
+
+        [addShotsButton setEnabled:YES];
+
         for(size_t i = 0; i < 1; i++)
         {
             cv::Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
             CVradius = cvRound(circles[i][2]);
             // circle center
-            circle( imageMat, center, 3, Scalar(255,0,0), 100, 8, 0 );
+            circle( imageMat, center, 3, Scalar(0,0,255), 100, 8, 0 );
             // circle outline
-            circle( imageMat, center, CVradius, Scalar(0,0,255), 15, 8, 0 );
+            circle( imageMat, center, CVradius, Scalar(0,0,0), 15, 8, 0 );
             targetRadius = CVradius*.132;
             
             NSLog(@"CVcenterX:%f CVcenterY:%f CVradius:%f",circles[i][0],circles[i][1],CVradius);
@@ -113,18 +138,21 @@ NSLog(@"%lu",circles.size());
             //NSLog(@"new Radius:%f",.132*radius);
             //(x+r,y)
             float scoreGap = CVradius/5;
-            for (int i = 0; i < 3; i ++) {
-                float tempRadius = CVradius-scoreGap;
+            float tempRadius = CVradius-scoreGap;
+            float tempRadius2 = 0.0;
+            for (int i = 0; i < 4; i ++) {
+                tempRadius2 = tempRadius;
                 circle(imageMat, center, tempRadius, Scalar(255,0,0), 10, 8, 0 );
-                scoreGap = scoreGap + scoreGap;
+                tempRadius = tempRadius - scoreGap;
+                //scoreGap = scoreGap + scoreGap;
             }
         }
-        //cvCenter = (circles[0][0],[circles[0][1]);
         
         _imageView.image = [self UIImageFromCVMat:imageMat];
-        [addShotsButton setEnabled:YES];
+
     } else {
-        NSLog(@"Take another pickture");
+        NSLog(@"Take another picture");
+        _distanceLabel.text = @"Take another picture!";
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 
@@ -139,13 +167,13 @@ imagePickerController.sourceType =  UIImagePickerControllerSourceTypePhotoLibrar
 [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 
-- (IBAction)takePictureFromCamera:(id)sender {
+- (void)takePictureFromCamera {
 if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]){
     UIImagePickerController *imagePickerController = [[UIImagePickerController alloc]init];
     imagePickerController = [[UIImagePickerController alloc] init];
     imagePickerController.delegate = self;
     imagePickerController.sourceType =  UIImagePickerControllerSourceTypeCamera;
-    
+
     [self presentViewController:imagePickerController animated:YES completion:nil];
 }
 else{
@@ -155,10 +183,16 @@ else{
 }
 
 - (IBAction)addShots {
+    moveX = YES;
 
 NSLog(@"add");
+    
+[calculateScoreButton setEnabled:NO];
+calculateScoreButton.hidden = YES;
 [deleteCurrentButton setEnabled:YES];
+deleteCurrentButton.hidden = NO;
 [setMarkerButton setEnabled:YES];
+setMarkerButton.hidden = NO;
 [addShotsButton setEnabled:NO];
 
 //enable done button and delete current
@@ -167,9 +201,6 @@ UIImage *bulletMark = [UIImage imageNamed:@"x-1.png"];
 img = [[UIImageView alloc] initWithImage:bulletMark];
 [self.imageView addSubview:img];
 
-    
-float radX = circles[0][2];
-radX = (radX)*(432.0/3264.0);
 
 
 
@@ -177,12 +208,6 @@ radX = (radX)*(432.0/3264.0);
     cvCenterX = cvCenterX*(432.0/3264.0);
     cvCenterY = circles[0][1];
     cvCenterY = cvCenterY*(320.0/2448.0);
-
-
-
-//CGFloat pointToRadiusX = radX - centerX;
-//CGFloat pointToRadiusY = radY - centerY;
-//CGFloat radiusDistance = sqrt((pointToRadiusX*pointToRadiusX)+(pointToRadiusY*pointToRadiusY));
 
 [shotDistances addObject:@(targetRadius)];
 NSLog(@"centerX:%f centerY:%f radiusDistanceToCenter:%f",cvCenterX,cvCenterY,targetRadius);
@@ -216,9 +241,19 @@ UIImageWriteToSavedPhotosAlbum(copied,nil, nil, nil) ;
 
 - (IBAction)deleteCurrentMarker {
 NSLog(@"delete");
+    moveX = NO;
+
+    [calculateScoreButton setEnabled:YES];
+    calculateScoreButton.hidden = NO;
 [deleteCurrentButton setEnabled:NO];
+deleteCurrentButton.hidden = YES;
+    
 [setMarkerButton setEnabled:NO];
+setMarkerButton.hidden = YES;
+    
 [addShotsButton setEnabled:YES];
+    addShotsButton.hidden = NO;
+    
 
 [img removeFromSuperview];
 
@@ -226,102 +261,117 @@ NSLog(@"delete");
 
 
 - (IBAction)setMarker {
+    moveX = NO;
+
+    shotCounter++;
+    [calculateScoreButton setEnabled:YES];
+    calculateScoreButton.hidden = NO;
 [coordinates addObject:[NSValue valueWithCGPoint:location]];
+    
 [deleteCurrentButton setEnabled:NO];
+deleteCurrentButton.hidden = YES;
+    
 [setMarkerButton setEnabled:NO];
+setMarkerButton.hidden = YES;
+    
 [addShotsButton setEnabled:YES];
+    addShotsButton.hidden = NO;
 
-NSLog(@"set");
-
-}
-
-- (IBAction) calculate {
-NSUInteger count = [coordinates count];
-distance = 0;
-counter=0;
+    CGPoint tempPoint = location;
 
     
+    NSLog(@"array count: %d",shotCounter);
 
-NSLog(@"array count: %lu",(unsigned long)count);
-
-    for (int i = 0; i < count; i++) {
-        NSValue *pointLocation = [coordinates objectAtIndex:i];
-        CGPoint tempPoint = [pointLocation CGPointValue];
-    
-//        for(int j = i +1 ; j < count; j++ )
-//        {
-//            counter++;
-//            NSLog(@"counter: %d",counter);
-//            
-//            NSValue *nextPointLocation = [coordinates objectAtIndex:j];
-//            CGPoint nextPoint = [nextPointLocation CGPointValue];
-//        
-//        
-            CGFloat xDist = (phoneCenter.x - tempPoint.x);
-            CGFloat yDist = (phoneCenter.y - tempPoint.y);
-            CGFloat tempDistance = sqrtf((xDist * xDist) + (yDist * yDist));
-//        
-
+        //
+        CGFloat xDist = (phoneCenter.x - tempPoint.x);
+        CGFloat yDist = (phoneCenter.y - tempPoint.y);
+        tempDistance = sqrtf((xDist * xDist) + (yDist * yDist));
+        //
+        
         distance = tempDistance;
-        float realUnit = targetRadius/22.0;
-        float targetGap = targetRadius/5.0;
-        float realDistance = tempDistance/realUnit;
-        NSLog(@"distance from center: %f",realDistance);
+        realUnit = targetRadius/11.0;
+        targetGap = targetRadius/5.0;
+        realDistance = tempDistance/realUnit;
+    
         [shotDistances addObject:@(realDistance)];
-
+    
+        NSLog(@"distance from center: %f centimeters",realDistance);
+        [shotDistances addObject:@(realDistance)];
+        
         if (tempDistance <= targetGap) {
             NSLog(@"bullseye");
             totalScore += 5;
-
+            
         } else if (tempDistance <= targetGap*2) {
             NSLog(@"4 points");
             totalScore += 4;
         }else if (tempDistance <= targetGap*3) {
             NSLog(@"3 points");
             totalScore += 3;
-
+            
         }else if (tempDistance <= targetGap*4) {
             NSLog(@"2 points");
             totalScore += 2;
-
+            
         }else if (tempDistance <= targetGap*5) {
             NSLog(@"1 point");
             totalScore += 1;
-
+            
         } else {
             NSLog(@"out of bounds");
-
+            
         }
-            //NSLog(@"i value:%d point1:%@ point2:%@ disance:%f",i,pointLocation,nextPointLocation,distance);
+        //NSLog(@"i value:%d point1:%@ point2:%@ disance:%f",i,pointLocation,nextPointLocation,distance);
         //}
-        
+        self.distanceLabel.text = [NSString stringWithFormat:@"%2.0f cm out",realDistance];
         //target.push_back(cv::Vec3f(0,0,255));
-    }
-    pointsLabel.text = [NSString stringWithFormat:@"%2.0f", totalScore];
-//
-//    phoneCenterX = circles[0][0];
-//    phoneCenterX = phoneCenterX*(432.0/3264.0);
-//    phoneCenterY = circles[0][1];
-//    phoneCenterY = phoneCenterY*(320.0/2448.0);
+    pointsLabel.text = [NSString stringWithFormat:@"Score: %2.0f", totalScore];
     
-    
-    //CGFloat pointToRadiusX = radX - centerX;
-    //CGFloat pointToRadiusY = radY - centerY;
-    //CGFloat radiusDistance = sqrt((pointToRadiusX*pointToRadiusX)+(pointToRadiusY*pointToRadiusY));
 
-    
-    NSLog(@"centerX:%f centerY:%f radiusDistanceToCenter:%f",phoneCenterX,phoneCenterY,targetRadius);
-    
-//NSLog(@"disance:%f",distance);
+NSLog(@"set");
 
-[self saveScore];
 }
 
-- (void) saveScore {
+
+- (IBAction) calculate {
+//NSUInteger count = [coordinates count];
+    NSUInteger count = [shotDistances count];
+    NSInteger totalDistance = 0;
+    averageInt = 0;
+    
+    for (int i = 0; i < count; i++) {
+        totalDistance = [[shotDistances objectAtIndex:i] integerValue];
+    }
+    averageInt = totalDistance / count;
+    _distanceLabel.text = [NSString stringWithFormat:@"average of %0.2f cm from center",averageInt];
+    
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Nice Shooting! Enter name" message:@" " delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"OK", nil];
+    av.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [av show];
+
+        //NSLog(@"distance from center: %f centimeters",realDistance);
+        //[shotDistances addObject:@(realDistance)];
+
+    
+
+//[self dismissViewControllerAnimated:YES completion:nil];
+
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1) {
+        NSString *name = [alertView textFieldAtIndex:0].text;
+        NSLog(@"Name:%@",name);
+        [self saveScore:name];
+        // name contains the entered value
+    }
+}
+
+- (void) saveScore:(NSString*)playerName {
 Score * score = [NSEntityDescription insertNewObjectForEntityForName:@"Score"
                                               inManagedObjectContext:self.managedObjectContext];
 
-score.name = @"Hunter";
+    score.name = playerName;
 float scoreFloat = totalScore;
                                 score.score = @(scoreFloat);
                                 
@@ -329,19 +379,23 @@ float scoreFloat = totalScore;
                                 if (![self.managedObjectContext save:&error]) {
                                     NSLog(@"Whoops, couldn't save: %@", [error localizedDescription]);
                                 }
-                                
-                                
+                                //[self dismissViewControllerAnimated:YES completion:nil];
+
                                 //[self.view endEditing:YES];
                                 }
                                 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
                                     UITouch *touch = [[event allTouches] anyObject];
                                     location = [touch locationInView:_imageView];
-                                    img.center = location;
-                                    NSLog(@"location: %@",NSStringFromCGPoint(location));
+                                    if ( moveX == YES) {
+
+                                        img.center = location;
+                                     }
+                                    
                                 }
                                 
                                 -(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
                                     [self touchesBegan:touches withEvent:event];
+
                                 }
                                 
                                 
