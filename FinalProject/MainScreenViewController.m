@@ -29,7 +29,7 @@
     self.view.backgroundColor = [UIColor blackColor];
  
     self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
-    self.navigationItem.title = @"Target Finder";
+    self.navigationItem.title = @"Shooter Helper";
     self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : [UIColor whiteColor]};
 
     // Do any additional setup after loading the view.
