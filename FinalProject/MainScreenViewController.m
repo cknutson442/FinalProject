@@ -27,7 +27,10 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor greenColor]];
+ 
+    self.navigationController.navigationBar.barTintColor = [UIColor blackColor];
+    self.navigationItem.title = @"Target Finder";
+    self.navigationController.navigationBar.titleTextAttributes = @{UITextAttributeTextColor : [UIColor whiteColor]};
 
     // Do any additional setup after loading the view.
 }
