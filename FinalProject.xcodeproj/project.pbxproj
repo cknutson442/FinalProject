@@ -29,6 +29,7 @@
 		0C50876418E3B48D00FFA32A /* GLKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C50876318E3B48D00FFA32A /* GLKit.framework */; };
 		0C50876B18E3E72300FFA32A /* ShotTimerViewController2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */; };
 		0C50876F18E3E8B800FFA32A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C50876C18E3E78600FFA32A /* Main.storyboard */; };
+		0CC0E59B192081DE00A87B47 /* beep-04.wav in Resources */ = {isa = PBXBuildFile; fileRef = 0CC0E59A192081DE00A87B47 /* beep-04.wav */; };
 		391A1D8C191D156D0011FFCC /* HighScores.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 391A1D8A191D156D0011FFCC /* HighScores.xcdatamodeld */; };
 		391A1D8E191D17850011FFCC /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 391A1D8D191D17850011FFCC /* CoreData.framework */; };
 		391A1D94191D22FC0011FFCC /* HighScoreTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 391A1D93191D22FC0011FFCC /* HighScoreTableViewController.m */; };
@@ -102,6 +103,7 @@
 		0C50876518E3D9B500FFA32A /* ShotTimerViewController2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShotTimerViewController2.h; sourceTree = "<group>"; };
 		0C50876618E3D9B500FFA32A /* ShotTimerViewController2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ShotTimerViewController2.mm; sourceTree = "<group>"; };
 		0C50876C18E3E78600FFA32A /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		0CC0E59A192081DE00A87B47 /* beep-04.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "beep-04.wav"; sourceTree = "<group>"; };
 		391A1D8B191D156D0011FFCC /* HighScores.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = HighScores.xcdatamodel; sourceTree = "<group>"; };
 		391A1D8D191D17850011FFCC /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		391A1D92191D22FC0011FFCC /* HighScoreTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreTableViewController.h; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		0C50871E18E37CE300FFA32A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				0CC0E59A192081DE00A87B47 /* beep-04.wav */,
 				39E1ABEA1920534900E9B2E2 /* addButton.png */,
 				39E1ABE819204C3B00E9B2E2 /* gallery2.png */,
 				39E1ABE61920456100E9B2E2 /* gallery.png */,
@@ -347,7 +350,7 @@
 				ORGANIZATIONNAME = "CONNER KNUTSON";
 				TargetAttributes = {
 					0C50871318E37CE300FFA32A = {
-						DevelopmentTeam = JQR64HDZQ5;
+						DevelopmentTeam = APD62CDC25;
 					};
 					0C50873418E37CE300FFA32A = {
 						TestTargetID = 0C50871318E37CE300FFA32A;
@@ -394,6 +397,7 @@
 				3951248B191AED4500CA59A4 /* Cloud.png in Resources */,
 				39C97AB1191B27B300AE8326 /* marker2.pdf in Resources */,
 				39E1ABEB1920534900E9B2E2 /* addButton.png in Resources */,
+				0CC0E59B192081DE00A87B47 /* beep-04.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -543,6 +547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -552,6 +557,7 @@
 				GCC_PREFIX_HEADER = "FinalProject/FinalProject-Prefix.pch";
 				INFOPLIST_FILE = "FinalProject/FinalProject-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -563,6 +569,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -572,6 +579,7 @@
 				GCC_PREFIX_HEADER = "FinalProject/FinalProject-Prefix.pch";
 				INFOPLIST_FILE = "FinalProject/FinalProject-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

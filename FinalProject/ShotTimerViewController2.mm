@@ -136,7 +136,11 @@ bool isAdding = false;
     //make beep sound?
     //AudioServicesPlaySystemSound(1005);
     
-    //NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-04" ofType:<#(NSString *)#>]]
+    NSURL* musicFile = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"beep-04" ofType:@"wav"]];
+    beep = [[AVAudioPlayer alloc] initWithContentsOfURL:musicFile error:nil];
+    [beep setVolume:1.0];
+    [beep prepareToPlay];
+    [beep play];
     
     //reset all the values
     shotCounter = 0;
@@ -184,7 +188,7 @@ bool isAdding = false;
     
     if(first)
     {
-        milliseconds2 = 500;
+        milliseconds2 = 250;
         first = false;
     }
     
@@ -541,7 +545,7 @@ bool isAdding = false;
          splitSTotal-=60;
          }
          splitTotal.text = [NSString stringWithFormat:@"%d:%d.%d",splitMTotal,splitSTotal,splitMSTotal];*/
-        [NSThread sleepForTimeInterval:0.2500];//debounce... ignore next tenth
+        [NSThread sleepForTimeInterval:0.250];//debounce... ignore next tenth
     }
     if(shotCounter==12)
     {
