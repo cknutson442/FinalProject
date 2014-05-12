@@ -345,7 +345,7 @@ NSLog(@"set");
     averageInt = totalDistance / count;
     _distanceLabel.text = [NSString stringWithFormat:@"average of %0.2f cm from center",averageInt];
     
-    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Nice Shooting! Enter name" message:@" " delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"OK", nil];
+    UIAlertView *av = [[UIAlertView alloc]initWithTitle:@"Nice Shooting!" message:@"Enter your name below" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"OK", nil];
     av.alertViewStyle = UIAlertViewStylePlainTextInput;
     [av show];
 
@@ -382,6 +382,9 @@ float scoreFloat = totalScore;
                                 //[self dismissViewControllerAnimated:YES completion:nil];
 
                                 //[self.view endEditing:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+    
+
                                 }
                                 -(void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
                                     UITouch *touch = [[event allTouches] anyObject];

@@ -27,6 +27,8 @@
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor blackColor];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor greenColor]];
+
     // Do any additional setup after loading the view.
 }
 

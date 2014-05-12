@@ -53,6 +53,7 @@
 		39E1ABE71920456100E9B2E2 /* gallery.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E1ABE61920456100E9B2E2 /* gallery.png */; };
 		39E1ABE919204C3B00E9B2E2 /* gallery2.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E1ABE819204C3B00E9B2E2 /* gallery2.png */; };
 		39E1ABEB1920534900E9B2E2 /* addButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E1ABEA1920534900E9B2E2 /* addButton.png */; };
+		39E1ABEF1920784700E9B2E2 /* targetIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 39E1ABEE1920784700E9B2E2 /* targetIcon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +129,7 @@
 		39E1ABE61920456100E9B2E2 /* gallery.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery.png; sourceTree = "<group>"; };
 		39E1ABE819204C3B00E9B2E2 /* gallery2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gallery2.png; sourceTree = "<group>"; };
 		39E1ABEA1920534900E9B2E2 /* addButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = addButton.png; sourceTree = "<group>"; };
+		39E1ABEE1920784700E9B2E2 /* targetIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = targetIcon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,6 +225,7 @@
 				3974B661191F802600795A7B /* Model */,
 				0C50875218E3ACBB00FFA32A /* HelperFiles */,
 				0C50872F18E37CE300FFA32A /* Images.xcassets */,
+				39E1ABEE1920784700E9B2E2 /* targetIcon.png */,
 				0C50871E18E37CE300FFA32A /* Supporting Files */,
 			);
 			path = FinalProject;
@@ -376,6 +379,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				39C97AB5191B3A4B00AE8326 /* x-1.png in Resources */,
+				39E1ABEF1920784700E9B2E2 /* targetIcon.png in Resources */,
 				39E1ABE5192043D300E9B2E2 /* camera2.png in Resources */,
 				39E1ABDF19202E4400E9B2E2 /* nav_download.png in Resources */,
 				39C97AB3191B39C600AE8326 /* foo.png in Resources */,
