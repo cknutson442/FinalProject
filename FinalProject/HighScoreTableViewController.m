@@ -59,10 +59,12 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    if ([self.fetchedScoresArray count] >= 10)
+    if ([self.fetchedScoresArray count] >= 10) {
         return 10;
-    else
+    }
+    else {
         return [self.fetchedScoresArray count];
+    }
 }
 
 
@@ -72,7 +74,7 @@
     Score *tempScore = [self.fetchedScoresArray objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [NSString stringWithFormat:@"%ld. %@",(indexPath.row+1),tempScore.name  ];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%2.0f",[tempScore.score floatValue]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%2.0f points",[tempScore.score floatValue]];
     NSLog(@"%f",[tempScore.score floatValue]);
     // Configure the cell...
     

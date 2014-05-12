@@ -155,7 +155,7 @@
             </objects>
             <point key="canvasLocation" x="2878" y="-674"/>
         </scene>
-        <!--High Score Table View Controller - High Scores-->
+        <!--High Score Table View Controller - Top Ten-->
         <scene sceneID="gEz-S6-gV0">
             <objects>
                 <tableViewController id="bsc-8B-t1C" customClass="HighScoreTableViewController" sceneMemberID="viewController">
@@ -194,7 +194,7 @@
                             <outlet property="delegate" destination="bsc-8B-t1C" id="FsN-Ho-5f1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="High Scores" id="omS-Mk-jFJ"/>
+                    <navigationItem key="navigationItem" title="Top Ten" id="omS-Mk-jFJ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="slS-UH-hUp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
